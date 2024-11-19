@@ -1,0 +1,74 @@
+# Test granules segmentation
+
+This notebook tests the granules segmentation algorithm using difference of gaussians (DoG) implemented in scikit-image filters.
+
+```{python}
+
+from glob import glob
+import imageio.v3 as iio
+import skimage as ski
+import numpy as np
+import matplotlib.pyplot as plt
+import re
+from os.path import basename
+import pandas as pd
+```
+
+```{python}
+PIXEL_SIZE = 0.18
+```
+
+```{python}
+ims_cyto = []
+ims_cyto_filtered = []
+ims_granules = []
+
+granule_data = []
+for im_fn in glob('data/ome-tiff/*/*tif')[30:40]:
+    im = iio.imread(im_fn)
+    # maximum intensity projection
+    im_nuclei = im[0].max(axis=0)
+    im_cytoplasm = im[1].max(axis=0)
+        # Process cytoplasm and find granules
+    im_cytoplasm_filtered = ski.filters.difference_of_gaussians(im_cytoplasm, 3)
+    threshold = 0.0009 # we use a fixed global threshould because all images were collected at the same intensity
+    im_granules = im_cytoplasm_filtered > threshold
+    im_granules = ski.morphology.remove_small_objects(im_granules, 15)
+    im_granules_labeled = ski.measure.label(im_granules)
+
+    granule_props = ski.measure.regionprops_table(im_granules_labeled, 
+                                    properties=['label', 'area', 'centroid', 
+                                            'eccentricity', 'perimeter'])
+    match = re.search(r'imagem(\d+)', im_fn)
+    image_number = match.group(1) if match else 'unknown'
+    granule_props['area'] = granule_props['area'] * PIXEL_SIZE * PIXEL_SIZE
+    granule_props['perimeter'] = granule_props['perimeter'] * PIXEL_SIZE
+    granule_props['image_number'] = image_number
+
+    granule_data.append(pd.DataFrame(granule_props))
+    
+
+
+    ims_cyto.append(im_cytoplasm)
+    ims_cyto_filtered.append(im_cytoplasm_filtered)
+    ims_granules.append(im_granules)
+granules_df = pd.concat(granule_data, ignore_index=True)
+```
+
+```{python}
+granules_df['area'].describe()
+```
+
+```{python}
+#|fig-cap: "Images of the cytoplasm, filtered cytoplasm and granules identified by DoG."
+fig, axs = plt.subplots(len(ims_cyto), 3, constrained_layout=True, figsize=(6, 2*len(ims_cyto)))
+for idx in range(len(ims_cyto)):
+    axs[idx,0].imshow(ims_cyto[idx], cmap='inferno', vmax=10)
+    axs[idx,1].imshow(ims_cyto_filtered[idx], vmin=0, vmax=0.003, cmap='magma')
+    axs[idx,2].imshow(ims_cyto[idx], cmap='inferno', vmax=10)
+    axs[idx,2].contour(ims_granules[idx], colors='white', linewidths=1.0)
+    axs[idx,0].axis('off')
+    axs[idx,1].axis('off')
+    axs[idx,2].axis('off')
+```
+

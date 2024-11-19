@@ -1,0 +1,108 @@
+# Statistical analyses
+
+Statistical analyses were conducted using Python's Pingouin library (version 5.5) to evaluate differences between groups. The Mann-Whitney U test was employed to compare group similarities with respect to stress granules area and the count of stress granules per cell, as this non-parametric test is appropriate for assessing differences between two independent groups without assuming normality of data distribution. Statistical significance was determined at a p-value threshold of 0.05, with results reported as median values and interquartile ranges to appropriately represent the distribution of non-normally distributed data (boxplots and violinplots).
+
+```{python}
+import pandas as pd
+import pingouin as pg
+import matplotlib.pyplot as plt
+import seaborn as sns
+```
+
+```{python}
+cells_df = pd.read_csv("output/granules_per_cell.csv")
+granules_df = pd.read_csv("output/granule_area.csv")
+```
+
+```{python}
+cells_df["group_treatment"] = cells_df.apply(lambda x: f'{x.group}_{x.treatment}', axis=1)
+granules_df["group_treatment"] = granules_df.apply(lambda x: f'{x.group}_{x.treatment}', axis=1)
+```
+
+```{python}
+cells_df.group_treatment.unique()
+```
+
+```{python}
+g = ['WT_CT', 'WT_ARS', 'WT_GLU-20min', 'WT_GLU-40min', 'R326H_CT', 'R326H_ARS', 'R326H_GLU-20min', 'R326H_GLU-40min']
+```
+
+```{python}
+mw_area_tests = []
+for i in range(len(g)):    
+    for j in range(i, len(g)):
+        result_mw = pg.mwu(granules_df[granules_df.group_treatment == g[i]]['area'], granules_df[granules_df.group_treatment == g[j]]['area'])
+        result_effsize = pg.compute_effsize(granules_df[granules_df.group_treatment == g[i]]['area'], granules_df[granules_df.group_treatment == g[j]]['area'], eftype="hedges")
+        mw_area_tests.append({"a": g[i], "b": g[j], "pval":result_mw['p-val'].values[0], "effsize":result_effsize})
+```
+
+```{python}
+mw_count_tests = []
+for i in range(len(g)):
+    for j in range(i, len(g)):
+        result_mw = pg.mwu(cells_df[cells_df.group_treatment == g[i]]['granule_count'], cells_df[cells_df.group_treatment == g[j]]['granule_count'])
+        result_effsize = pg.compute_effsize(cells_df[cells_df.group_treatment == g[i]]['granule_count'], cells_df[cells_df.group_treatment == g[j]]['granule_count'], eftype="hedges")
+        mw_count_tests.append({"a": g[i], "b": g[j], "pval":result_mw['p-val'].values[0], "effsize":result_effsize})
+```
+
+```{python}
+mw_count_wout_zeros_tests = []
+for i in range(len(g)):
+    for j in range(i, len(g)):
+        result_mw = pg.mwu(cells_df[(cells_df.group_treatment == g[i])&(cells_df.granule_count > 0)]['granule_count'], cells_df[(cells_df.group_treatment == g[j])&(cells_df.granule_count > 0)]['granule_count'])
+        result_effsize = pg.compute_effsize(cells_df[(cells_df.group_treatment == g[i])&(cells_df.granule_count > 0)]['granule_count'], cells_df[(cells_df.group_treatment == g[j])&(cells_df.granule_count > 0)]['granule_count'], eftype="hedges")
+        mw_count_wout_zeros_tests.append({"a": g[i], "b": g[j], "pval":result_mw['p-val'].values[0], "effsize":result_effsize})
+```
+
+```{python}
+df_sg_count_tests = pd.DataFrame(mw_count_tests)
+df_sg_count_wout_zeros_tests = pd.DataFrame(mw_count_wout_zeros_tests)
+df_area_tests = pd.DataFrame(mw_area_tests)
+# .pivot(index="a", columns="b", values="pval")
+# df_tmp = df_tmp[g].sort_values(by=g)
+```
+
+```{python}
+#|fig-cap: "Heatmap of Mann-Whitney U test results for stress granule area"
+#|fig-align: "center"
+#|fig-title: "Mann-Whitney U test results for stress granule area."
+fig, axs = plt.subplots(1,2, figsize=(8,3), sharey=True)
+# fig, axs = plt.subplots(1,2, figsize=(16,6))
+df_tmp1 = df_area_tests.pivot(index="a", columns="b", values="pval")[g].sort_values(by=g)
+sns.heatmap(df_tmp1, ax=axs[0], square=True, annot=True, fmt='.3f', vmax=0.1, annot_kws={"size": 5})
+df_tmp2 = df_area_tests.pivot(index="a", columns="b", values="effsize")[g].sort_values(by=g)
+sns.heatmap(df_tmp2, ax=axs[1], square=True, annot=True, fmt='.3f', cmap="coolwarm", center=0, annot_kws={"size": 5})
+axs[0].set_title("Mann-Whitney U test (p-value)")
+axs[1].set_title("Hedges' g effect size")
+axs[0].set_ylabel("Group")
+axs[1].set_ylabel("Group")
+axs[0].set_xlabel("Group")
+axs[1].set_xlabel("Group")
+fig.suptitle("Area", fontsize=20)
+fig.savefig("plots/mw_area.png")
+```
+
+```{python}
+fig, axs = plt.subplots(1,2, figsize=(16,6))
+df_tmp1 = df_sg_count_tests.pivot(index="a", columns="b", values="pval")[g].sort_values(by=g)
+sns.heatmap(df_tmp1, ax=axs[0], square=True, annot=True, fmt='.3f', vmax=0.1)
+df_tmp2 = df_sg_count_tests.pivot(index="a", columns="b", values="effsize")[g].sort_values(by=g)
+sns.heatmap(df_tmp2, ax=axs[1], square=True, annot=True, fmt='.3f', cmap="coolwarm", center=0)
+axs[0].set_title("Mann-Whitney U test (p-value)")
+axs[1].set_title("Hedges' g effect size")
+fig.suptitle("Count per cell", fontsize=20)
+fig.savefig("plots/mw_count.png")
+```
+
+```{python}
+fig, axs = plt.subplots(1,2, figsize=(16,6))
+df_tmp1 = df_sg_count_wout_zeros_tests.pivot(index="a", columns="b", values="pval")[g].sort_values(by=g)
+sns.heatmap(df_tmp1, ax=axs[0], square=True, annot=True, fmt='.3f', vmax=0.1)
+df_tmp2 = df_sg_count_wout_zeros_tests.pivot(index="a", columns="b", values="effsize")[g].sort_values(by=g)
+sns.heatmap(df_tmp2, ax=axs[1], square=True, annot=True, fmt='.3f', cmap="coolwarm", center=0)
+axs[0].set_title("Mann-Whitney U test (p-value)")
+axs[1].set_title("Hedges' g effect size")
+fig.suptitle("Count per cell (without zeros)", fontsize=20)
+fig.savefig("plots/mw_count_wout_zeros.png")
+```
+

@@ -1,23 +1,38 @@
 project:
   type: book
 
+
 book:
-  title: "ddx3x-stress-granules-analysis"
+  title: "ddx3x-stress-granules-analyses"
   author: "Norah Jones"
   date: "11/19/2024"
   chapters:
     - index.qmd
-    - intro.qmd
-    - summary.qmd
-    - references.qmd
+    - ddx3x_plots.qmd
+    - ddx3x_stat_analysis.qmd
+  appendices: 
+    - granules_seg.qmd
+    - cell_seg.qmd
+    # - intro.qmd
+    # - summary.qmd
+    # - references.qmd
+
+execute:
+  echo: false
+
 
 bibliography: references.bib
 
 format:
   html:
     theme: cosmo
+    echo: false
+    code-fold: true
+    code-tools: true
+    warning: false
   pdf:
     documentclass: scrreprt
+
 
 
 

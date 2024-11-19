@@ -1,0 +1,67 @@
+# Test cellpose to segment cells
+
+This notebook tests the cellpose algorithm to segment cells. We found that the model (cyto3) worked better after a preprocessing step were we apply a gaussian filter to each channel and then rescale the intensity.
+
+```{python}
+from cellpose import models
+from glob import glob
+import imageio.v3 as iio
+import skimage as ski
+import numpy as np
+import matplotlib.pyplot as plt
+```
+
+```{python}
+model = models.CellposeModel(gpu=True, model_type='cyto3')
+```
+
+```{python}
+ims_to_cellpose = []
+ims_cyto = []
+ims_cyto_pre = []
+for im_fn in glob('data/ome-tiff/*/*tif')[:10]:
+    im = iio.imread(im_fn)
+    # maximum intensity projection
+    im_nuclei = im[0].max(axis=0)
+    im_cytoplasm = im[1].max(axis=0)
+    im_cyto_pre = im_cytoplasm
+    # im_cyto_pre = ski.exposure.rescale_intensity(np.clip(im_cytoplasm,0,30), in_range=(0,30))
+    # im_cyto_pre = ski.exposure.rescale_intensity(np.clip(im_cytoplasm, 0, 20), out_range=(0.0,1.0))
+    im_cyto_pre = ski.filters.gaussian(im_cyto_pre, sigma=0.5)
+    im_cyto_pre = ski.exposure.rescale_intensity(im_cyto_pre,out_range=(0,1))
+    im_nuclei_pre = im_nuclei
+    im_nuclei_pre = ski.filters.gaussian(im_nuclei_pre, sigma=1)
+    im_nuclei_pre = ski.exposure.rescale_intensity(im_nuclei_pre,out_range=(0,1))
+    ims_to_cellpose.append(np.stack([im_cyto_pre, im_nuclei_pre], axis=0))
+    ims_cyto.append(im_cytoplasm)
+    ims_cyto_pre.append(im_cyto_pre)
+    # break
+```
+
+```{python}
+fig, axs = plt.subplots(len(ims_cyto), 2, constrained_layout=True, figsize=(6, 3*len(ims_cyto)))
+for idx in range(len(ims_cyto)):
+    axs[idx,0].imshow(ims_cyto[idx], cmap='gray')
+    axs[idx,1].imshow(ims_cyto_pre[idx], vmin=0, vmax=1, cmap='gray')
+    axs[idx,0].axis('off')
+    axs[idx,1].axis('off')
+```
+
+```{python}
+masks, flows, styles = model.eval(ims_to_cellpose, channels=[0,1], diameter=100, normalize=True, min_size=30)
+```
+
+```{python}
+fig, axs = plt.subplots(len(masks), 3, constrained_layout=True, figsize=(9, 3*len(masks)))
+for idx, mask in enumerate(masks):
+    axs[idx, 0].imshow(ims_cyto[idx], cmap='magma')
+    axs[idx, 1].imshow(ims_cyto_pre[idx], cmap='grey')
+    axs[idx, 2].imshow(ims_cyto_pre[idx], cmap='grey')
+    axs[idx, 2].imshow(ski.color.label2rgb(mask), alpha=0.5)
+    axs[idx, 2].contour(mask, linewidths=0.1, colors='red')
+    axs[idx,0].axis('off')
+    axs[idx,1].axis('off')
+    axs[idx,2].axis('off')
+```
+
+
