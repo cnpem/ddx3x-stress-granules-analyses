@@ -1,1 +1,1 @@
-# ddx3x-stress-granules-analysis
+# ddx3x-stress-granules-analyses
