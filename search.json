@@ -2,31 +2,75 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "ddx3x-stress-granules-analysis",
+    "title": "ddx3x-stress-granules-analyses",
     "section": "",
-    "text": "Preface\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books.",
+    "text": "Summary\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books.",
     "crumbs": [
-      "Preface"
+      "Summary"
+    ]
+  },
+  {
+    "objectID": "ddx3x_plot_results.html",
+    "href": "ddx3x_plot_results.html",
+    "title": "1  Plots of results",
+    "section": "",
+    "text": "Violin plots of stress granule area.\n\n\n\n\n\n\n\n\n\nViolin plots of stress granule count per cell excluding cells with zero stress granules.\n\n\n\n\n\n\n\n\n\nViolin plots of stress granule count per cell.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Plots of results</span>"
+    ]
+  },
+  {
+    "objectID": "ddx3x_stat_analysis.html",
+    "href": "ddx3x_stat_analysis.html",
+    "title": "2  Statistical analyses",
+    "section": "",
+    "text": "Statistical analyses were conducted using Python’s Pingouin library (version 5.5) to evaluate differences between groups. The Mann-Whitney U test was employed to compare group similarities with respect to stress granules area and the count of stress granules per cell, as this non-parametric test is appropriate for assessing differences between two independent groups without assuming normality of data distribution. Statistical significance was determined at a p-value threshold of 0.05, with results reported as median values and interquartile ranges to appropriately represent the distribution of non-normally distributed data (boxplots and violinplots).\n\n\narray(['R326H_GLU-40min', 'R326H_ARS', 'R326H_GLU-20min', 'R326H_CT',\n       'WT_CT', 'WT_ARS', 'WT_GLU-20min', 'WT_GLU-40min'], dtype=object)\n\n\n\n\n\n\n\nHeatmap of Mann-Whitney U test results for stress granule area",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Statistical analyses</span>"
+    ]
+  },
+  {
+    "objectID": "granules_seg.html",
+    "href": "granules_seg.html",
+    "title": "Appendix A — Test granules segmentation",
+    "section": "",
+    "text": "This notebook tests the granules segmentation algorithm using difference of gaussians (DoG) implemented in scikit-image filters.\n\n\ncount    876.000000\nmean       1.998000\nstd        1.191632\nmin        0.486000\n25%        1.101600\n50%        1.782000\n75%        2.600100\nmax       11.502000\nName: area, dtype: float64\n\n\n\n\n\n\n\nImages of the cytoplasm, filtered cytoplasm and granules identified by DoG.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Test granules segmentation</span>"
+    ]
+  },
+  {
+    "objectID": "cell_seg.html",
+    "href": "cell_seg.html",
+    "title": "Appendix B — Test cellpose to segment cells",
+    "section": "",
+    "text": "This notebook tests the cellpose algorithm to segment cells. We found that the model (cyto3) worked better after a preprocessing step were we apply a gaussian filter to each channel and then rescale the intensity.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Test cellpose to segment cells</span>"
     ]
   },
   {
     "objectID": "intro.html",
     "href": "intro.html",
-    "title": "1  Introduction",
+    "title": "Appendix C — Introduction",
     "section": "",
-    "text": "This is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "text": "This is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\n\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+      "Appendices",
+      "<span class='chapter-number'>C</span>  <span class='chapter-title'>Introduction</span>"
     ]
   },
   {
     "objectID": "summary.html",
     "href": "summary.html",
-    "title": "2  Summary",
+    "title": "Appendix D — Summary",
     "section": "",
     "text": "In summary, this book has no content whatsoever.",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary</span>"
+      "Appendices",
+      "<span class='chapter-number'>D</span>  <span class='chapter-title'>Summary</span>"
     ]
   },
   {
@@ -36,6 +80,7 @@
     "section": "",
     "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
     "crumbs": [
+      "Appendices",
       "References"
     ]
   }
