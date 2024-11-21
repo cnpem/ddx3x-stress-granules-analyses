@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
     "cellpose==3.1.0",
+    "imageio>=2.36.0",
     "jupyter>=1.1.1",
     "llvmlite==0.43",
     "matplotlib>=3.9.2",

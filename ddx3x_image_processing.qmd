@@ -1,0 +1,416 @@
+---
+title: Image Analysis
+jupyter: python3
+---
+
+
+Confocal microscopy images were analyzed using a custom Python pipeline. Maximum intensity Z-projections were generated for both DAPI and GFP channels. For granule detection, the GFP channel was preprocessed using Difference of Gaussians filtering (σ₁ = 3.0, σ₂ = 4.8) to enhance punctate structures while suppressing background noise. Granules were segmented using a global intensity threshold of 0.0009, followed by removal of objects smaller than 15 pixels and those touching image borders. 
+
+Cell segmentation was performed using Cellpose v3.1 [10.1038/s41592-020-01018-x] with the cyto3 model [10.1101/2024.02.10.579780]. Prior to segmentation, images were preprocessed with Gaussian smoothing (σ = 0.5 for GFP and σ = 1.0 for DAPI channels) and intensity rescaling to the [0,1] range. The model was configured with a target cell diameter of 100 pixels and minimum size threshold of 30 pixels. Cell masks were expanded by 5 pixels and border-touching cells were excluded from analysis.
+
+Morphometric measurements including area, perimeter, and eccentricity were calculated for both granules and cells using scikit-image v0.24 [10.7717/peerj.453]. All measurements were converted to physical units using the microscope's calibrated pixel size (0.18 µm/pixel). For each cell, the number of contained granules was counted and normalized to cell area. The analysis pipeline was implemented in Python using cellpose, scikit-image, numpy, pandas and plotting libraries matplotlib, seaborn and microfilm v0.2.1.
+
+### References
+
+10.1038/s41592-020-01018-x Cellpose: a generalist algorithm for cellular segmentation
+
+10.1101/2024.02.10.579780 Cellpose3: one-click image restoration for improved cellular segmentation
+
+10.7717/peerj.453 scikit-image: Image processing in Python.
+
+
+```{python}
+# image analysis
+import imageio.v3 as iio
+from cellpose import models
+from skimage.exposure  import rescale_intensity
+from skimage.filters import gaussian, difference_of_gaussians
+from skimage.morphology import remove_small_objects
+from skimage.measure import label, regionprops, regionprops_table
+from skimage.color import label2rgb
+from skimage.segmentation import clear_border, expand_labels
+# general
+import pandas as pd
+import numpy as np
+import re
+from glob import glob
+from os.path import basename
+# plot libs
+import matplotlib.pyplot as plt
+import seaborn as sns
+from microfilm import microplot
+```
+
+```{python}
+# pixel size = 0.18um
+PIXEL_SIZE = 0.18
+IMAGES_PATH = [
+    "data/ome-tiff/ddx3x_R326H/*.ome.tif", 
+    "data/ome-tiff/ddx3x_wt/*.ome.tif"]
+```
+
+```{python}
+def save_sample_images(fig_title, im_nuclei, im_cytoplasm, im_cytoplasm_filtered, im_granules_labeled, cells_labeled):
+    fig, axs = plt.subplots(1,3, constrained_layout=True)
+    im_cyto_g = gaussian(im_cytoplasm, 3)
+    im_nuclei_g = gaussian(im_nuclei, 1)
+    min_nuclei, max_nuclei = np.quantile(im_nuclei_g, [0.01, 0.999])
+    min_cyto, max_cyto = np.quantile(im_cyto_g, [0.2, 0.999]) 
+    microplot.microshow(
+        images=[im_nuclei_g, im_cyto_g], 
+        cmaps=["pure_blue", "pure_green"], 
+        ax=axs[0],
+        label_text=fig_title, 
+        label_font_size=5,
+        unit='um', 
+        scalebar_unit_per_pix=0.18, scalebar_size_in_units=5,
+        scalebar_font_size=10, scalebar_thickness=0.01,
+        rescale_type='limits',
+        limits=[[min_nuclei, max_nuclei], [min_cyto, max_cyto]])
+    
+    microplot.microshow(
+        images=[im_cytoplasm_filtered], 
+        cmaps=["magma"], 
+        ax=axs[1], 
+        rescale_type='limits',
+        limits=[[0,0.005]])
+
+    axs[2].imshow(im_cytoplasm, cmap='gray')
+    axs[2].imshow(label2rgb(cells_labeled), alpha=0.1)
+    # axs[2].imshow(label2rgb(im_granules_labeled), alpha=0.1)
+    axs[2].contour(cells_labeled, colors='white', linewidths=0.1)
+    axs[2].contour(im_granules_labeled, colors='yellow', linewidths=0.1)
+    axs[2].axis("off")
+
+    # this line is specific to these data
+    # fig_basename = re.search(r'\[(.*?)]', im_fn).group(1)
+    # fig.suptitle(f'Image: {fig_basename}', fontsize=8)
+    axs[0].set_title('Maximum projection', fontsize=6)
+    axs[1].set_title('Channel after filtering', fontsize=6)
+    axs[2].set_title('Detected cells and granules', fontsize=6)
+    
+    fig.savefig(f'figures/{fig_title}.png', bbox_inches = 'tight', pad_inches = 0, dpi=600)
+    # fig.savefig(f'figures/{fig_basename}.pdf', bbox_inches = 'tight', pad_inches = 0, dpi=600)
+    # fig.savefig(f'figures/{fig_basename}.svg', bbox_inches = 'tight', pad_inches = 0, dpi=600)
+    plt.close(fig)
+```
+
+```{python}
+def get_treatment_from_image_filename(im_fn):
+    if "ARS" in im_fn:
+        return 'ARS'
+    elif 'GLU_40min' in im_fn:
+        return 'GLU-40min'
+    elif 'GLU_20min' in im_fn:
+        return 'GLU-20min'
+    elif 'CT' in im_fn:
+        return 'CT'
+    else:
+        raise(f"Fail in extract group from filename", im_fn)
+```
+
+```{python}
+def get_image_number_from_image_filename(im_fn):
+    match = re.search(r'imagem(\d+)', im_fn)
+    image_number = match.group(1) if match else 'unknown'
+    return int(image_number)
+```
+
+```{python}
+def get_group_from_path(im_path):
+    if 'ddx3x_wt' in im_path:
+        return 'WT'
+    elif 'ddx3x_R326H' in im_path:
+        return 'R326H'
+```
+
+```{python}
+model = models.CellposeModel(gpu=True, model_type='cyto3')
+
+# Lists to store data for both dataframes
+granule_data = []
+cell_data = []
+
+# plot
+fig_example, axs = plt.subplots(8,3, figsize=(9,25))
+example_number = 3
+
+idx = 0
+for im_path in IMAGES_PATH:
+    for im_fn in glob(im_path):
+        #read image
+        im = iio.imread(im_fn)
+        # maximum intensity projection
+        im_nuclei = im[0].max(axis=0)
+        im_cytoplasm = im[1].max(axis=0)
+        
+        # Process cytoplasm and find granules
+        im_cytoplasm_filtered = difference_of_gaussians(im_cytoplasm, 3)
+        threshold = 0.0009 # we use a fixed global threshould because all images were collected at the same intensity
+        im_granules = im_cytoplasm_filtered > threshold
+        im_granules = remove_small_objects(im_granules, 15)
+        im_granules_labeled = clear_border(label(im_granules))
+        
+        # Get granule properties
+        granule_props = regionprops_table(im_granules_labeled, 
+                                        properties=['label', 'area', 'centroid', 
+                                                'eccentricity', 'perimeter'])
+        # match = re.search(r'imagem(\d+)', im_fn)
+        # image_number = match.group(1) if match else 'unknown'
+
+        granule_props['area'] = granule_props['area'] * PIXEL_SIZE * PIXEL_SIZE
+        granule_props['perimeter'] = granule_props['perimeter'] * PIXEL_SIZE
+        image_number = get_image_number_from_image_filename(im_fn)
+        granule_props['image_number'] = image_number
+        # granule_props['group'] = basename(im_fn).split(".lif")[0]
+        image_treatment = get_treatment_from_image_filename(im_fn)
+        granule_props['treatment'] = image_treatment
+        image_group = get_group_from_path(im_path)
+        granule_props['group']= image_group
+        granule_data.append(pd.DataFrame(granule_props))
+
+        
+        # Segment cells with cellpose
+        # preprocessing to improve cellpose segmentation
+        im_cyto_pre = gaussian(im_cytoplasm, sigma=0.5)
+        im_cyto_pre = rescale_intensity(im_cyto_pre,out_range=(0,1))
+        im_nuclei_pre = gaussian(im_nuclei, sigma=1)
+        im_nuclei_pre = rescale_intensity(im_nuclei_pre,out_range=(0,1))
+        
+        im_to_cellpose = np.stack([im_cyto_pre, im_nuclei_pre], axis=0)
+        masks, flows, styles = model.eval(im_to_cellpose, channels=[0,1], diameter=100, min_size=30)
+        cells_labeled = clear_border(expand_labels(masks, 5))
+        
+        # Process each cell
+        for cell in regionprops(cells_labeled):
+            cell_mask = cells_labeled == cell.label
+            granules_in_cell = im_granules_labeled[cell_mask]
+            granule_count = len(np.unique(granules_in_cell[granules_in_cell > 0]))
+            
+            cell_area = cell.area * PIXEL_SIZE * PIXEL_SIZE
+            cell_data.append({
+                'treatment': image_treatment,
+                'group': image_group,
+                'image_number': image_number,
+                'cell_label': cell.label,
+                'cell_area': cell_area,
+                'granule_count': granule_count,
+                'granules_per_area': granule_count / cell_area if cell_area > 0 else 0
+            })
+    
+
+        fig_title = f"DDX3X-{image_group}-{image_treatment}-img{image_number}"
+        if image_number == example_number:
+            # plot one image from each group 
+            im_cyto_g = gaussian(im_cytoplasm, 3)
+            im_nuclei_g = gaussian(im_nuclei, 1)
+            min_nuclei, max_nuclei = np.quantile(im_nuclei_g, [0.01, 0.999])
+            min_cyto, max_cyto = np.quantile(im_cyto_g, [0.2, 0.999]) 
+            microplot.microshow(
+                images=[im_nuclei_g, im_cyto_g], 
+                cmaps=["pure_blue", "pure_green"], 
+                ax=axs[idx, 0],
+                label_text=fig_title, 
+                label_font_size=5,
+                unit='um', 
+                scalebar_unit_per_pix=0.18, scalebar_size_in_units=5,
+                scalebar_font_size=10, scalebar_thickness=0.01,
+                rescale_type='limits',
+                limits=[[min_nuclei, max_nuclei], [min_cyto, max_cyto]])           # fig_basename = re.search(r'\[(.*?)\.lif\]', im_fn).group(1)
+
+            microplot.microshow(
+                images=[im_cytoplasm_filtered], 
+                cmaps=["magma"], 
+                ax=axs[idx,1], 
+                rescale_type='limits',
+                limits=[[0,0.005]])
+        
+            axs[idx,2].imshow(im_cytoplasm, cmap="gray")
+            axs[idx,2].imshow(label2rgb(cells_labeled), alpha=0.1)
+            axs[idx,2].contour(cells_labeled, colors='white', linewidths=0.1)
+            axs[idx,2].contour(im_granules_labeled, colors='yellow', linewidths=0.1)
+            axs[idx,2].axis("off")
+
+            # names and labels
+            if idx == 0:
+                axs[idx, 0].set_title('Maximum projection', fontsize=8)
+                axs[idx, 1].set_title('Channel after filtering', fontsize=8)
+                axs[idx, 2].set_title('Detected cells and granules', fontsize=8)
+
+            idx += 1
+
+        # save all images to verify the quality
+        save_sample_images(fig_title, im_nuclei, im_cytoplasm, im_cytoplasm_filtered, im_granules_labeled, cells_labeled)
+
+# Create final dataframes
+granules_df = pd.concat(granule_data, ignore_index=True)
+cells_df = pd.DataFrame(cell_data)
+
+# Save figure with examples
+fig_example.savefig('figures/examples.png', bbox_inches = 'tight', pad_inches = 0, dpi=600)
+fig_example.savefig('figures/example.pdf', bbox_inches = 'tight', pad_inches = 0, dpi=600)
+fig_example.savefig('figures/example.svg', bbox_inches = 'tight', pad_inches = 0, dpi=600)
+```
+
+```{python}
+cells_df.to_csv("output/granules_per_cell.csv", index=False)
+granules_df.to_csv("output/granule_area.csv", index=False)
+```
+<!-- 
+```{python}
+# cells_df['group'] = cells_df['group'].replace(
+#     {'20240913_R326H_GFP_placa1_2908__CT_Z': 'CT',
+#      '20240912_R326H_GFP_placa1_2908__ARS_Z': 'ARS',
+#      '20240911_R326H_GFP_placa3_2908__GLU_40min_Z':'GLU 40min',
+#      '20240912_R326H_GFP_placa2_2908__GLU_20min_Z': 'GLU 20min'})
+# cells_df = cells_df.sort_values('group', key=lambda x: pd.Categorical(x, categories=['ARS', 'GLU 40min', 'GLU 20min', 'CT'], ordered=True))
+cells_df
+```
+
+```{python}
+# granules_df['group'] = granules_df['group'].replace(
+#     {'20240913_R326H_GFP_placa1_2908__CT_Z': 'CT',
+#      '20240912_R326H_GFP_placa1_2908__ARS_Z': 'ARS',
+#      '20240911_R326H_GFP_placa3_2908__GLU_40min_Z':'GLU 40min',
+#      '20240912_R326H_GFP_placa2_2908__GLU_20min_Z': 'GLU 20min'})
+# granules_df = granules_df.sort_values('group', key=lambda x: pd.Categorical(x, categories=['ARS', 'GLU 40min', 'GLU 20min', 'CT'], ordered=True))
+granules_df
+```
+
+```{python}
+fig, axs = plt.subplots(1,2, figsize=(8,3), sharey=True,  constrained_layout=True)
+axs[0].set_title('DDX3X WT')
+axs[1].set_title('DDX3X R326H')
+sns.violinplot(data=granules_df[granules_df.group == 'WT'], 
+               x='treatment', y='area', 
+               fill=False, 
+               inner='box', 
+               ax=axs[0], 
+               order=['CT', 'ARS', 'GLU-20min', 'GLU-40min'], 
+               color='k', 
+               density_norm='width',
+               linewidth=1)
+sns.violinplot(data=granules_df[granules_df.group == 'R326H'], 
+               x='treatment', y='area', 
+               fill=False, 
+               inner='box', 
+               ax=axs[1], 
+               order=['CT', 'ARS', 'GLU-20min', 'GLU-40min'], 
+               color='cyan',
+               density_norm='width',
+               linewidth=1)
+for ax in axs:
+    ax.set_xlabel('')
+    ax.set_ylabel('Area')
+    ax.set_yticks(range(0,14))
+    ax.set_ylim(0,13)
+    ax.grid(axis='y', linewidth=.2)
+plt.savefig("plots/stress_granules_area.png")
+plt.savefig("plots/stress_granules_area.png")
+```
+
+```{python}
+fig, axs = plt.subplots(1,2, figsize=(8,3), sharey=True,  constrained_layout=True)
+axs[0].set_title('DDX3X WT')
+axs[1].set_title('DDX3X R326H')
+sns.violinplot(data=cells_df[cells_df.group == 'WT'], 
+               x='treatment', y='granule_count', 
+               fill=False, 
+               inner='box', 
+               ax=axs[0], 
+               order=['CT', 'ARS', 'GLU-20min', 'GLU-40min'], 
+               color='k', 
+               density_norm='width',
+               linewidth=1)
+sns.violinplot(data=cells_df[cells_df.group == 'R326H'], 
+               x='treatment', y='granule_count', 
+               fill=False, 
+               inner='box', 
+               ax=axs[1], 
+               order=['CT', 'ARS', 'GLU-20min', 'GLU-40min'], 
+               color='cyan',
+               density_norm='width',
+               linewidth=1)
+for ax in axs:
+    ax.set_xlabel('')
+    ax.set_ylabel('Granules')
+    ax.set_yticks(range(0,15))
+    ax.set_ylim(0,15)
+    ax.grid(axis='y', linewidth=.2)
+plt.savefig("plots/stress_granules_per_cell.png")
+plt.savefig("plots/stress_granules_per_cell.svg")
+```
+
+```{python}
+fig, axs = plt.subplots(1,2, figsize=(8,3), sharey=True,  constrained_layout=True)
+axs[0].set_title('DDX3X WT')
+axs[1].set_title('DDX3X R326H')
+sns.violinplot(data=cells_df[(cells_df.group == 'WT')&(cells_df.granule_count > 0)], 
+               x='treatment', y='granule_count', 
+               fill=False, 
+               inner='box', 
+               ax=axs[0], 
+               order=['CT', 'ARS', 'GLU-20min', 'GLU-40min'], 
+               color='k', 
+               density_norm='width',
+            #    width=2,
+               linewidth=1)
+sns.violinplot(data=cells_df[(cells_df.group == 'R326H')&(cells_df.granule_count > 0)], 
+               x='treatment', y='granule_count', 
+               fill=False, 
+               inner='box', 
+               ax=axs[1], 
+               order=['CT', 'ARS', 'GLU-20min', 'GLU-40min'], 
+               color='cyan',
+               density_norm='width',
+            #    width=2,
+               linewidth=1)
+for ax in axs:
+    ax.set_xlabel('')
+    ax.set_ylabel('Granules')
+    ax.set_yticks(range(0,15))
+    ax.set_ylim(0,15)
+    ax.grid(axis='y', linewidth=.2)
+plt.savefig("plots/stress_granules_per_cell_wout_zeros.png")
+plt.savefig("plots/stress_granules_per_cell_wout_zeros.svg")
+```
+
+```{python}
+# Create categories for different granule counts
+sns.set_palette('Set3')
+def categorize_granules(count):
+    if count == 0:
+        return '0 granules'
+    elif count == 1:
+        return '1 granule'
+    elif count == 2:
+        return '2 granule'
+    # elif 2 <= count <= 5:
+    #     return '2-5 granules'
+    else:
+        return '>3 granules'
+
+
+# Add category column
+cells_df['granule_category'] = cells_df['granule_count'].apply(categorize_granules)
+
+# Calculate percentages for each group and category
+category_percentages = cells_df.groupby(['group', 'treatment', 'granule_category']).size().unstack()
+category_percentages = category_percentages.div(category_percentages.sum(axis=1), axis=0) * 100
+# category_percentages = category_percentages.sort_values('group', key=lambda x: pd.Categorical(x, categories=['CT', 'ARS', 'GLU-20min', 'GLU-40min'], ordered=True))
+# Create stacked bar plotplt.grid(axis='y', linewidth=.2)2, 6))
+category_percentages = category_percentages.sort_values('treatment', key=lambda x: pd.Categorical(x, categories=['CT', 'ARS', 'GLU-20min', 'GLU-40min'], ordered=True)).sort_values('group', ascending=False)
+category_percentages.plot(kind='bar', stacked=True)
+
+# plt.xticks(rotation=45, ha='right')
+plt.ylabel('Cells (%)')
+# plt.xlabel('Group')
+plt.legend(title='Granule Count', bbox_to_anchor=(1.0, 1.01), loc='upper left')
+plt.tight_layout()
+plt.xlabel('')
+plt.ylim(0,100)
+plt.grid(axis='y', linewidth=.2)
+plt.savefig("plots/cells_with_stress_granules.png")
+plt.savefig("plots/cells_with_stress_granules.svg")
+``` -->
+

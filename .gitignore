@@ -1,9 +1,13 @@
 # ignore data
 data/
+figures/
+plots/
 
 .quarto/
 _site/
 _book/
+
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

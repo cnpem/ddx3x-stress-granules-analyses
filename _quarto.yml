@@ -4,35 +4,40 @@ project:
 
 book:
   title: "ddx3x-stress-granules-analyses"
-  author: "Norah Jones"
-  date: "11/19/2024"
+  author:
+    - name: José Geraldo de Carvalho Pereira
+      affiliation: LNBio/CNPEM
+    - name: João Victor da Silva Guerra
+      affiliation: LNBio/CNPEM
+  date: 11/19/2024
+  date-format: iso
+  sidebar:
+    logo: "assets/img/LNBio_logo.png"
+    logo-href: "https://lnbio.cnpem.br"
+    style: "docked"
   chapters:
     - index.qmd
-    - ddx3x_plots.qmd
+    - ddx3x_
+    - ddx3x_plot_results.qmd
     - ddx3x_stat_analysis.qmd
-  appendices: 
+    - references.qmd
+  appendices:
     - granules_seg.qmd
     - cell_seg.qmd
-    # - intro.qmd
-    # - summary.qmd
-    # - references.qmd
+
 
 execute:
+  warning: false
   echo: false
-
 
 bibliography: references.bib
 
 format:
   html:
-    theme: cosmo
+    theme: litera
     echo: false
     code-fold: true
     code-tools: true
     warning: false
   pdf:
     documentclass: scrreprt
-
-
-
-
