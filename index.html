@@ -6,8 +6,6 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="José Geraldo de Carvalho Pereira">
-<meta name="author" content="João Victor da Silva Guerra">
 <meta name="dcterms.date" content="2024-11-19">
 
 <title>ddx3x-stress-granules-analyses</title>
@@ -67,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./ddx3x_plot_results.html" rel="next">
+<link href="./ddx3x_image_processing.html" rel="next">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -153,14 +151,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./ddx3x_image_processing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Image Analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./ddx3x_plot_results.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Plots of results</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Plots of results</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ddx3x_stat_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Statistical analyses</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Statistical analyses</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -175,31 +185,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./granules_seg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Test granules segmentation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Testing stress granules segmentation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cell_seg.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Test cellpose to segment cells</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
   </div>
 </li>
       </ul>
@@ -227,31 +219,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 
 
-<div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">Authors</div>
-  <div class="quarto-title-meta-heading">Affiliation</div>
-  
-    <div class="quarto-title-meta-contents">
-    <p class="author">José Geraldo de Carvalho Pereira </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            LNBio/CNPEM
-          </p>
-      </div>
-    <div class="quarto-title-meta-contents">
-    <p class="author">João Victor da Silva Guerra </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            LNBio/CNPEM
-          </p>
-      </div>
-  </div>
 
 <div class="quarto-title-meta">
 
-      
+    
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
@@ -269,8 +240,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="summary" class="level1 unnumbered">
 <h1 class="unnumbered">Summary</h1>
-<p>This is a Quarto book.</p>
-<p>To learn more about Quarto books visit <a href="https://quarto.org/docs/books" class="uri">https://quarto.org/docs/books</a>.</p>
+<p>This web book documents the computational analyses performed to investigate the role of chloride ions in regulating DDX3X helicase function, with particular focus on its involvement in biomolecular condensation and stress granule formation. DDX3X mutations are associated with neurodevelopmental disorders, making this analysis crucial for understanding disease mechanisms.</p>
+<p>The analysis pipeline is organized into three main sections:</p>
+<ol type="1">
+<li><p><strong>Image Analysis Pipeline</strong>: A comprehensive Python-based workflow for processing confocal microscopy data. The pipeline includes maximum intensity Z-projection generation, stress granule detection using Difference of Gaussians filtering, and automated cell segmentation using Cellpose v3.1. The complete analysis code is accessible via the “&lt;/&gt; code” button in the top right corner of each page.</p></li>
+<li><p><strong>Quantitative Analysis</strong>: Detailed comparisons of stress granule characteristics across experimental groups and treatments, including:</p>
+<ul>
+<li>Stress granule area measurements</li>
+<li>Granule counts per cell</li>
+<li>Distribution of cells with varying numbers of stress granules</li>
+</ul></li>
+<li><p><strong>Statistical Analysis</strong>: Rigorous statistical evaluation using non-parametric tests (Mann-Whitney U) to assess differences between experimental groups, with comprehensive reporting of effect sizes and significance levels.</p></li>
+</ol>
+<p>The appendices contain supplementary technical documentation, including validation studies for cell segmentation and stress granule detection methodologies.</p>
 
 
 <!-- -->
@@ -753,16 +735,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./ddx3x_plot_results.html" class="pagination-link" aria-label="Plots of results">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Plots of results</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./ddx3x_image_processing.html" class="pagination-link" aria-label="Image Analysis">
+        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Image Analysis</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Summary {.unnumbered}</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>This is a Quarto book.</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>This web book documents the computational analyses performed to investigate the role of chloride ions in regulating DDX3X helicase function, with particular focus on its involvement in biomolecular condensation and stress granule formation. DDX3X mutations are associated with neurodevelopmental disorders, making this analysis crucial for understanding disease mechanisms.</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>To learn more about Quarto books visit <span class="ot">&lt;https://quarto.org/docs/books&gt;</span>.</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>The analysis pipeline is organized into three main sections:</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Image Analysis Pipeline**: A comprehensive Python-based workflow for processing confocal microscopy data. The pipeline includes maximum intensity Z-projection generation, stress granule detection using Difference of Gaussians filtering, and automated cell segmentation using Cellpose v3.1. The complete analysis code is accessible via the "&lt;/&gt; code" button in the top right corner of each page.</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Quantitative Analysis**: Detailed comparisons of stress granule characteristics across experimental groups and treatments, including:</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Stress granule area measurements</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Granule counts per cell</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Distribution of cells with varying numbers of stress granules</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Statistical Analysis**: Rigorous statistical evaluation using non-parametric tests (Mann-Whitney U) to assess differences between experimental groups, with comprehensive reporting of effect sizes and significance levels.</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>The appendices contain supplementary technical documentation, including validation studies for cell segmentation and stress granule detection methodologies.</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

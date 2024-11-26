@@ -4,40 +4,131 @@
     "href": "index.html",
     "title": "ddx3x-stress-granules-analyses",
     "section": "",
-    "text": "Summary\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books.",
+    "text": "Summary\nThis web book documents the computational analyses performed to investigate the role of chloride ions in regulating DDX3X helicase function, with particular focus on its involvement in biomolecular condensation and stress granule formation. DDX3X mutations are associated with neurodevelopmental disorders, making this analysis crucial for understanding disease mechanisms.\nThe analysis pipeline is organized into three main sections:\n\nImage Analysis Pipeline: A comprehensive Python-based workflow for processing confocal microscopy data. The pipeline includes maximum intensity Z-projection generation, stress granule detection using Difference of Gaussians filtering, and automated cell segmentation using Cellpose v3.1. The complete analysis code is accessible via the “&lt;/&gt; code” button in the top right corner of each page.\nQuantitative Analysis: Detailed comparisons of stress granule characteristics across experimental groups and treatments, including:\n\nStress granule area measurements\nGranule counts per cell\nDistribution of cells with varying numbers of stress granules\n\nStatistical Analysis: Rigorous statistical evaluation using non-parametric tests (Mann-Whitney U) to assess differences between experimental groups, with comprehensive reporting of effect sizes and significance levels.\n\nThe appendices contain supplementary technical documentation, including validation studies for cell segmentation and stress granule detection methodologies.",
     "crumbs": [
       "Summary"
     ]
   },
   {
+    "objectID": "ddx3x_image_processing.html",
+    "href": "ddx3x_image_processing.html",
+    "title": "1  Image Analysis",
+    "section": "",
+    "text": "Confocal microscopy images were analyzed using a custom Python pipeline. Maximum intensity Z-projections were generated for both DAPI and GFP channels. For granule detection, the GFP channel was preprocessed using Difference of Gaussians filtering (σ₁ = 3.0, σ₂ = 4.8) to enhance punctate structures while suppressing background noise. Granules were segmented using a global intensity threshold of 0.0009, followed by removal of objects smaller than 15 pixels and those touching image borders.\nCell segmentation was performed using Cellpose v3.1 (Stringer et al. 2021) with the cyto3 model (Stringer and Pachitariu 2024). Prior to segmentation, images were preprocessed with Gaussian smoothing (σ = 0.5 for GFP and σ = 1.0 for DAPI channels) and intensity rescaling to the [0,1] range. The model was configured with a target cell diameter of 100 pixels and minimum size threshold of 30 pixels. Cell masks were expanded by 5 pixels and border-touching cells were excluded from analysis.\nMorphometric measurements including area, perimeter, and eccentricity were calculated for both granules and cells using scikit-image v0.24 (Walt et al. 2014). All measurements were converted to physical units using the microscope’s calibrated pixel size (0.18 µm/pixel). For each cell, the number of contained granules was counted and normalized to cell area. The analysis pipeline was implemented in Python using cellpose, scikit-image, numpy, pandas and plotting libraries matplotlib, seaborn and microfilm v0.2.1.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStringer, Carsen, and Marius Pachitariu. 2024. “Cellpose3: One-Click Image Restoration for Improved Cellular Segmentation.” February 12, 2024. https://doi.org/10.1101/2024.02.10.579780.\n\n\nStringer, Carsen, Tim Wang, Michalis Michaelos, and Marius Pachitariu. 2021. “Cellpose: A Generalist Algorithm for Cellular Segmentation.” Nature Methods 18 (1): 100–106. https://doi.org/10.1038/s41592-020-01018-x.\n\n\nWalt, Stéfan van der, Johannes L. Schönberger, Juan Nunez-Iglesias, François Boulogne, Joshua D. Warner, Neil Yager, Emmanuelle Gouillart, and Tony Yu. 2014. “Scikit-Image: Image Processing in Python.” PeerJ 2 (June): e453. https://doi.org/10.7717/peerj.453.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Image Analysis</span>"
+    ]
+  },
+  {
     "objectID": "ddx3x_plot_results.html",
     "href": "ddx3x_plot_results.html",
-    "title": "1  Plots of results",
+    "title": "2  Plots of results",
     "section": "",
-    "text": "Violin plots of stress granule area.\n\n\n\n\n\n\n\n\n\nViolin plots of stress granule count per cell excluding cells with zero stress granules.\n\n\n\n\n\n\n\n\n\nViolin plots of stress granule count per cell.",
+    "text": "2.1 Stress granule area\nIn this section, we present the results of the statistical analysis of stress granule area.\nViolin plots of stress granule area.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Plots of results</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Plots of results</span>"
+    ]
+  },
+  {
+    "objectID": "ddx3x_plot_results.html#stress-granule-count-per-cell",
+    "href": "ddx3x_plot_results.html#stress-granule-count-per-cell",
+    "title": "2  Plots of results",
+    "section": "2.2 Stress granule count per cell",
+    "text": "2.2 Stress granule count per cell\nIn this section, we present the results of the statistical analysis of stress granule count per cell.\n\n\n\n\n\nViolin plots of stress granule count per cell.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Plots of results</span>"
+    ]
+  },
+  {
+    "objectID": "ddx3x_plot_results.html#stress-granule-count-per-cell-excluding-cells-without-stress-granules",
+    "href": "ddx3x_plot_results.html#stress-granule-count-per-cell-excluding-cells-without-stress-granules",
+    "title": "2  Plots of results",
+    "section": "2.3 Stress granule count per cell excluding cells without stress granules",
+    "text": "2.3 Stress granule count per cell excluding cells without stress granules\nIn this section, we present the results of the statistical analysis of stress granule count per cell excluding cells with zero stress granules.\n\n\n\n\n\nViolin plots of stress granule count per cell excluding cells with zero stress granules.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Plots of results</span>"
+    ]
+  },
+  {
+    "objectID": "ddx3x_plot_results.html#distribution-of-granule-counts",
+    "href": "ddx3x_plot_results.html#distribution-of-granule-counts",
+    "title": "2  Plots of results",
+    "section": "2.4 Distribution of granule counts",
+    "text": "2.4 Distribution of granule counts\nIn this section, we present the distribution of granules per cell.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Plots of results</span>"
     ]
   },
   {
     "objectID": "ddx3x_stat_analysis.html",
     "href": "ddx3x_stat_analysis.html",
-    "title": "2  Statistical analyses",
+    "title": "3  Statistical analyses",
     "section": "",
-    "text": "Statistical analyses were conducted using Python’s Pingouin library (version 5.5) to evaluate differences between groups. The Mann-Whitney U test was employed to compare group similarities with respect to stress granules area and the count of stress granules per cell, as this non-parametric test is appropriate for assessing differences between two independent groups without assuming normality of data distribution. Statistical significance was determined at a p-value threshold of 0.05, with results reported as median values and interquartile ranges to appropriately represent the distribution of non-normally distributed data (boxplots and violinplots).\n\n\narray(['R326H_GLU-40min', 'R326H_ARS', 'R326H_GLU-20min', 'R326H_CT',\n       'WT_CT', 'WT_ARS', 'WT_GLU-20min', 'WT_GLU-40min'], dtype=object)\n\n\n\n\n\n\n\nHeatmap of Mann-Whitney U test results for stress granule area",
+    "text": "3.1 Stress granule area\nIn this section we report the results of the Mann-Whitney U test for stress granule area.\nHeatmap of Mann-Whitney U test results for stress granule area\nThe table below shows the results of the Mann-Whitney U test for stress granule area.\na\nb\npval\neffsize\nsig\n\n\n\n\n0\nWT_CT\nWT_CT\n1.000000e+00\n0.000000\n\n\n\n1\nWT_CT\nWT_ARS\n1.444819e-08\n-0.491300\n***\n\n\n2\nWT_CT\nWT_GLU-40min\n3.723332e-18\n-0.712830\n***\n\n\n3\nWT_CT\nR326H_CT\n2.869549e-01\n0.370567\n\n\n\n4\nWT_CT\nR326H_ARS\n4.694069e-13\n-0.645084\n***\n\n\n5\nWT_CT\nR326H_GLU-40min\n1.979906e-14\n-0.658083\n***\n\n\n6\nWT_CT\nL556S_CT\n1.833748e-01\n-0.100994\n\n\n\n7\nWT_CT\nL556S_ARS\n2.489017e-08\n-0.454045\n***\n\n\n8\nWT_CT\nL556S_GLU-40min\n8.642237e-16\n-0.651920\n***\n\n\n9\nWT_ARS\nWT_ARS\n1.000000e+00\n0.000000\n\n\n\n10\nWT_ARS\nWT_GLU-40min\n1.518014e-09\n-0.344289\n***\n\n\n11\nWT_ARS\nR326H_CT\n7.476797e-04\n0.811269\n***\n\n\n12\nWT_ARS\nR326H_ARS\n4.147449e-04\n-0.243542\n***\n\n\n13\nWT_ARS\nR326H_GLU-40min\n5.469063e-06\n-0.315777\n***\n\n\n14\nWT_ARS\nL556S_CT\n4.041335e-07\n0.414520\n***\n\n\n15\nWT_ARS\nL556S_ARS\n6.819676e-01\n-0.034364\n\n\n\n16\nWT_ARS\nL556S_GLU-40min\n3.026860e-08\n-0.355838\n***\n\n\n17\nWT_GLU-40min\nWT_GLU-40min\n1.000000e+00\n0.000000\n\n\n\n18\nWT_GLU-40min\nR326H_CT\n1.341227e-05\n0.945012\n***\n\n\n19\nWT_GLU-40min\nR326H_ARS\n3.504465e-02\n0.107662\n*\n\n\n20\nWT_GLU-40min\nR326H_GLU-40min\n1.774624e-01\n0.008097\n\n\n\n21\nWT_GLU-40min\nL556S_CT\n3.408725e-19\n0.659057\n***\n\n\n22\nWT_GLU-40min\nL556S_ARS\n1.747310e-11\n0.297401\n***\n\n\n23\nWT_GLU-40min\nL556S_GLU-40min\n6.470862e-01\n-0.065804\n\n\n\n24\nR326H_CT\nR326H_CT\n1.000000e+00\n0.000000\n\n\n\n25\nR326H_CT\nR326H_ARS\n1.447696e-04\n-0.892613\n***\n\n\n26\nR326H_CT\nR326H_GLU-40min\n1.190401e-04\n-0.875171\n***\n\n\n27\nR326H_CT\nL556S_CT\n8.852778e-02\n-0.511138\n\n\n\n28\nR326H_CT\nL556S_ARS\n9.773745e-04\n-0.716146\n***\n\n\n29\nR326H_CT\nL556S_GLU-40min\n7.071967e-05\n-0.843682\n***\n\n\n30\nR326H_ARS\nR326H_ARS\n1.000000e+00\n0.000000\n\n\n\n31\nR326H_ARS\nR326H_GLU-40min\n3.447954e-01\n-0.094542\n\n\n\n32\nR326H_ARS\nL556S_CT\n8.781866e-13\n0.588608\n***\n\n\n33\nR326H_ARS\nL556S_ARS\n7.002608e-05\n0.195383\n***\n\n\n34\nR326H_ARS\nL556S_GLU-40min\n7.151400e-02\n-0.158782\n\n\n\n35\nR326H_GLU-40min\nR326H_GLU-40min\n1.000000e+00\n0.000000\n\n\n\n36\nR326H_GLU-40min\nL556S_CT\n1.662738e-14\n0.606451\n***\n\n\n37\nR326H_GLU-40min\nL556S_ARS\n3.767650e-07\n0.275572\n***\n\n\n38\nR326H_GLU-40min\nL556S_GLU-40min\n3.167485e-01\n-0.071998\n\n\n\n39\nL556S_CT\nL556S_CT\n1.000000e+00\n0.000000\n\n\n\n40\nL556S_CT\nL556S_ARS\n9.733764e-07\n-0.389053\n***\n\n\n41\nL556S_CT\nL556S_GLU-40min\n1.224795e-16\n-0.605562\n***\n\n\n42\nL556S_ARS\nL556S_ARS\n1.000000e+00\n0.000000\n\n\n\n43\nL556S_ARS\nL556S_GLU-40min\n5.722174e-10\n-0.323537\n***\n\n\n44\nL556S_GLU-40min\nL556S_GLU-40min\n1.000000e+00\n0.000000",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Statistical analyses</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Statistical analyses</span>"
+    ]
+  },
+  {
+    "objectID": "ddx3x_stat_analysis.html#stress-granule-count",
+    "href": "ddx3x_stat_analysis.html#stress-granule-count",
+    "title": "3  Statistical analyses",
+    "section": "3.2 Stress granule count",
+    "text": "3.2 Stress granule count\nIn this section we report the results of the Mann-Whitney U test for stress granule count.\n\n\n\n\n\n\n\n\n\nThe table below shows the results of the Mann-Whitney U test for stress granule count.\n\n\n\n\n\n\na\nb\npval\neffsize\nsig\n\n\n\n\n0\nWT_CT\nWT_CT\n1.000000e+00\n0.000000\n\n\n\n1\nWT_CT\nWT_ARS\n2.328439e-38\n-0.658002\n***\n\n\n2\nWT_CT\nWT_GLU-40min\n2.991894e-45\n-0.686770\n***\n\n\n3\nWT_CT\nR326H_CT\n5.077542e-06\n0.257577\n***\n\n\n4\nWT_CT\nR326H_ARS\n1.071489e-95\n-1.797017\n***\n\n\n5\nWT_CT\nR326H_GLU-40min\n3.311004e-110\n-1.312007\n***\n\n\n6\nWT_CT\nL556S_CT\n9.752523e-13\n-0.423307\n***\n\n\n7\nWT_CT\nL556S_ARS\n2.390978e-108\n-1.691925\n***\n\n\n8\nWT_CT\nL556S_GLU-40min\n1.000682e-127\n-1.347347\n***\n\n\n9\nWT_ARS\nWT_ARS\n1.000000e+00\n0.000000\n\n\n\n10\nWT_ARS\nWT_GLU-40min\n9.478483e-02\n-0.176939\n\n\n\n11\nWT_ARS\nR326H_CT\n4.024982e-37\n0.705919\n***\n\n\n12\nWT_ARS\nR326H_ARS\n2.172558e-28\n-0.922284\n***\n\n\n13\nWT_ARS\nR326H_GLU-40min\n1.176457e-32\n-0.743579\n***\n\n\n14\nWT_ARS\nL556S_CT\n9.983112e-06\n0.319120\n***\n\n\n15\nWT_ARS\nL556S_ARS\n1.378148e-34\n-0.974151\n***\n\n\n16\nWT_ARS\nL556S_GLU-40min\n2.196790e-47\n-0.926617\n***\n\n\n17\nWT_GLU-40min\nWT_GLU-40min\n1.000000e+00\n0.000000\n\n\n\n18\nWT_GLU-40min\nR326H_CT\n8.598319e-40\n0.695015\n***\n\n\n19\nWT_GLU-40min\nR326H_ARS\n6.379375e-22\n-0.644555\n***\n\n\n20\nWT_GLU-40min\nR326H_GLU-40min\n8.358479e-26\n-0.541465\n***\n\n\n21\nWT_GLU-40min\nL556S_CT\n3.678879e-08\n0.420856\n***\n\n\n22\nWT_GLU-40min\nL556S_ARS\n3.873608e-28\n-0.732669\n***\n\n\n23\nWT_GLU-40min\nL556S_GLU-40min\n2.057891e-41\n-0.787748\n***\n\n\n24\nR326H_CT\nR326H_CT\n1.000000e+00\n0.000000\n\n\n\n25\nR326H_CT\nR326H_ARS\n7.588849e-78\n-1.586718\n***\n\n\n26\nR326H_CT\nR326H_GLU-40min\n1.283138e-82\n-1.186750\n***\n\n\n27\nR326H_CT\nL556S_CT\n9.251632e-21\n-0.617582\n***\n\n\n28\nR326H_CT\nL556S_ARS\n2.928305e-85\n-1.471787\n***\n\n\n29\nR326H_CT\nL556S_GLU-40min\n1.678989e-92\n-1.188644\n***\n\n\n30\nR326H_ARS\nR326H_ARS\n1.000000e+00\n0.000000\n\n\n\n31\nR326H_ARS\nR326H_GLU-40min\n2.412129e-01\n0.054510\n\n\n\n32\nR326H_ARS\nL556S_CT\n6.627514e-38\n1.185861\n***\n\n\n33\nR326H_ARS\nL556S_ARS\n4.839017e-01\n-0.101098\n\n\n\n34\nR326H_ARS\nL556S_GLU-40min\n1.076544e-01\n-0.230166\n\n\n\n35\nR326H_GLU-40min\nR326H_GLU-40min\n1.000000e+00\n0.000000\n\n\n\n36\nR326H_GLU-40min\nL556S_CT\n1.475635e-41\n0.922075\n***\n\n\n37\nR326H_GLU-40min\nL556S_ARS\n4.328833e-02\n-0.152074\n*\n\n\n38\nR326H_GLU-40min\nL556S_GLU-40min\n1.221306e-03\n-0.283064\n**\n\n\n39\nL556S_CT\nL556S_CT\n1.000000e+00\n0.000000\n\n\n\n40\nL556S_CT\nL556S_ARS\n9.611689e-44\n-1.155181\n***\n\n\n41\nL556S_CT\nL556S_GLU-40min\n2.955185e-52\n-0.999123\n***\n\n\n42\nL556S_ARS\nL556S_ARS\n1.000000e+00\n0.000000\n\n\n\n43\nL556S_ARS\nL556S_GLU-40min\n3.859191e-01\n-0.143939\n\n\n\n44\nL556S_GLU-40min\nL556S_GLU-40min\n1.000000e+00\n0.000000",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Statistical analyses</span>"
+    ]
+  },
+  {
+    "objectID": "ddx3x_stat_analysis.html#stress-granule-count-excluding-cells-without-stress-granules",
+    "href": "ddx3x_stat_analysis.html#stress-granule-count-excluding-cells-without-stress-granules",
+    "title": "3  Statistical analyses",
+    "section": "3.3 Stress granule count excluding cells without stress granules",
+    "text": "3.3 Stress granule count excluding cells without stress granules\nIn this section we report the results of the Mann-Whitney U test for stress granule count excluding cells with 0 stress granules.\n\n\n\n\n\n\n\n\n\nThe table below shows the results of the Mann-Whitney U test for stress granule count excluding cells with 0 stress granules.\n\n\n\n\n\n\na\nb\npval\neffsize\nsig\n\n\n\n\n0\nWT_CT\nWT_CT\n1.000000e+00\n0.000000\n\n\n\n1\nWT_CT\nWT_ARS\n3.824093e-07\n-0.611783\n***\n\n\n2\nWT_CT\nWT_GLU-40min\n3.670507e-15\n-0.935183\n***\n\n\n3\nWT_CT\nR326H_CT\n5.257235e-01\n0.230145\n\n\n\n4\nWT_CT\nR326H_ARS\n1.184435e-17\n-1.128065\n***\n\n\n5\nWT_CT\nR326H_GLU-40min\n2.790425e-17\n-0.937493\n***\n\n\n6\nWT_CT\nL556S_CT\n2.799336e-01\n-0.190382\n\n\n\n7\nWT_CT\nL556S_ARS\n1.051417e-15\n-1.000541\n***\n\n\n8\nWT_CT\nL556S_GLU-40min\n9.477464e-21\n-1.006275\n***\n\n\n9\nWT_ARS\nWT_ARS\n1.000000e+00\n0.000000\n\n\n\n10\nWT_ARS\nWT_GLU-40min\n8.794329e-09\n-0.489219\n***\n\n\n11\nWT_ARS\nR326H_CT\n1.507377e-02\n0.689982\n*\n\n\n12\nWT_ARS\nR326H_ARS\n4.592835e-12\n-0.732544\n***\n\n\n13\nWT_ARS\nR326H_GLU-40min\n2.396019e-12\n-0.623158\n***\n\n\n14\nWT_ARS\nL556S_CT\n1.891038e-05\n0.479447\n***\n\n\n15\nWT_ARS\nL556S_ARS\n4.568672e-11\n-0.732144\n***\n\n\n16\nWT_ARS\nL556S_GLU-40min\n1.476676e-21\n-0.849846\n***\n\n\n17\nWT_GLU-40min\nWT_GLU-40min\n1.000000e+00\n0.000000\n\n\n\n18\nWT_GLU-40min\nR326H_CT\n7.363865e-04\n0.964492\n***\n\n\n19\nWT_GLU-40min\nR326H_ARS\n2.773498e-02\n-0.226022\n*\n\n\n20\nWT_GLU-40min\nR326H_GLU-40min\n6.965504e-02\n-0.201839\n\n\n\n21\nWT_GLU-40min\nL556S_CT\n3.384915e-14\n0.843682\n***\n\n\n22\nWT_GLU-40min\nL556S_ARS\n2.559875e-02\n-0.307523\n*\n\n\n23\nWT_GLU-40min\nL556S_GLU-40min\n5.534880e-08\n-0.550711\n***\n\n\n24\nR326H_CT\nR326H_CT\n1.000000e+00\n0.000000\n\n\n\n25\nR326H_CT\nR326H_ARS\n1.373146e-04\n-1.072151\n***\n\n\n26\nR326H_CT\nR326H_GLU-40min\n3.166547e-04\n-0.937101\n***\n\n\n27\nR326H_CT\nL556S_CT\n2.967821e-01\n-0.363509\n\n\n\n28\nR326H_CT\nL556S_ARS\n4.714899e-04\n-0.954757\n***\n\n\n29\nR326H_CT\nL556S_GLU-40min\n1.124235e-04\n-0.982660\n***\n\n\n30\nR326H_ARS\nR326H_ARS\n1.000000e+00\n0.000000\n\n\n\n31\nR326H_ARS\nR326H_GLU-40min\n5.339796e-01\n0.004725\n\n\n\n32\nR326H_ARS\nL556S_CT\n8.394619e-17\n1.048618\n***\n\n\n33\nR326H_ARS\nL556S_ARS\n9.297615e-01\n-0.094989\n\n\n\n34\nR326H_ARS\nL556S_GLU-40min\n1.086864e-02\n-0.353916\n*\n\n\n35\nR326H_GLU-40min\nR326H_GLU-40min\n1.000000e+00\n0.000000\n\n\n\n36\nR326H_GLU-40min\nL556S_CT\n1.396449e-16\n0.871550\n***\n\n\n37\nR326H_GLU-40min\nL556S_ARS\n4.883719e-01\n-0.096419\n\n\n\n38\nR326H_GLU-40min\nL556S_GLU-40min\n2.541097e-04\n-0.366941\n***\n\n\n39\nL556S_CT\nL556S_CT\n1.000000e+00\n0.000000\n\n\n\n40\nL556S_CT\nL556S_ARS\n4.434595e-15\n-0.943877\n***\n\n\n41\nL556S_CT\nL556S_GLU-40min\n5.283970e-21\n-0.967545\n***\n\n\n42\nL556S_ARS\nL556S_ARS\n1.000000e+00\n0.000000\n\n\n\n43\nL556S_ARS\nL556S_GLU-40min\n1.248802e-02\n-0.270989\n*\n\n\n44\nL556S_GLU-40min\nL556S_GLU-40min\n1.000000e+00\n0.000000",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Statistical analyses</span>"
+    ]
+  },
+  {
+    "objectID": "ddx3x_stat_analysis.html#number-of-stress-granules-per-group-treatment",
+    "href": "ddx3x_stat_analysis.html#number-of-stress-granules-per-group-treatment",
+    "title": "3  Statistical analyses",
+    "section": "3.4 Number of stress granules per group-treatment",
+    "text": "3.4 Number of stress granules per group-treatment\nThe table below shows the number of stress granules per group-treatment and some descritive statistics.\n\n\n\n\n\n\n\n\n\n\narea\nperimeter\neccentricity\n\n\n\n\ncount\nmean\nstd\nmin\n25%\n50%\n75%\nmax\ncount\nmean\n...\n75%\nmax\ncount\nmean\nstd\nmin\n25%\n50%\n75%\nmax\n\n\ngroup\ntreatment\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nL556S\nARS\n691.0\n1.666607\n1.091191\n0.486\n0.8748\n1.3608\n2.1060\n9.6228\n691.0\n4.356356\n...\n5.171026\n20.578662\n691.0\n0.627862\n0.184972\n0.000000\n0.513572\n0.625943\n0.766329\n0.986992\n\n\nCT\n180.0\n1.265400\n0.751034\n0.486\n0.7128\n1.0368\n1.5876\n5.0544\n180.0\n3.680375\n...\n4.301909\n13.844104\n180.0\n0.589241\n0.191811\n0.000000\n0.474023\n0.588505\n0.728852\n0.982201\n\n\nGLU-40min\n1332.0\n2.096149\n1.434272\n0.486\n1.0044\n1.6848\n2.7540\n10.4976\n1332.0\n4.983623\n...\n5.934701\n17.927636\n1332.0\n0.646837\n0.183042\n0.000000\n0.523866\n0.649439\n0.789965\n0.983591\n\n\nR326H\nARS\n605.0\n1.882627\n1.120533\n0.486\n1.0044\n1.6848\n2.5272\n7.4196\n605.0\n4.665341\n...\n5.680143\n17.996896\n605.0\n0.639020\n0.181585\n0.000000\n0.510215\n0.642449\n0.776232\n0.980406\n\n\nCT\n14.0\n0.891000\n0.309403\n0.486\n0.7371\n0.8100\n1.0611\n1.5228\n14.0\n2.971227\n...\n3.327351\n4.047351\n14.0\n0.561236\n0.114290\n0.426655\n0.491940\n0.521188\n0.588426\n0.830147\n\n\nGLU-40min\n999.0\n1.997708\n1.271337\n0.486\n0.9720\n1.6524\n2.7216\n7.2576\n999.0\n4.838104\n...\n6.040143\n13.098519\n999.0\n0.682040\n0.168841\n0.000000\n0.565697\n0.691411\n0.819727\n0.971741\n\n\nWT\nARS\n552.0\n1.631563\n0.921098\n0.486\n0.9072\n1.4256\n2.1060\n6.1884\n552.0\n4.269373\n...\n5.171026\n12.229403\n552.0\n0.630785\n0.174492\n0.000000\n0.516561\n0.629057\n0.761414\n0.983689\n\n\nCT\n118.0\n1.186169\n0.828374\n0.486\n0.6804\n0.9558\n1.4094\n6.6096\n118.0\n3.505283\n...\n4.126432\n9.894701\n118.0\n0.592587\n0.178478\n0.000000\n0.502130\n0.584013\n0.705129\n0.978226\n\n\nGLU-40min\n857.0\n2.007704\n1.188982\n0.486\n1.1016\n1.7820\n2.6244\n11.5020\n857.0\n4.887295\n...\n5.822864\n19.542338\n857.0\n0.675274\n0.168816\n0.000000\n0.565575\n0.688883\n0.801755\n0.982561\n\n\n\n\n9 rows × 24 columns",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Statistical analyses</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Stringer, Carsen, and Marius Pachitariu. 2024. “Cellpose3:\nOne-Click Image Restoration for Improved Cellular Segmentation.”\nFebruary 12, 2024. https://doi.org/10.1101/2024.02.10.579780.\n\n\nStringer, Carsen, Tim Wang, Michalis Michaelos, and Marius Pachitariu.\n2021. “Cellpose: A Generalist Algorithm for Cellular\nSegmentation.” Nature Methods 18 (1): 100–106. https://doi.org/10.1038/s41592-020-01018-x.\n\n\nWalt, Stéfan van der, Johannes L. Schönberger, Juan Nunez-Iglesias,\nFrançois Boulogne, Joshua D. Warner, Neil Yager, Emmanuelle Gouillart,\nand Tony Yu. 2014. “Scikit-Image: Image Processing in\nPython.” PeerJ 2 (June): e453. https://doi.org/10.7717/peerj.453.",
+    "crumbs": [
+      "References"
     ]
   },
   {
     "objectID": "granules_seg.html",
     "href": "granules_seg.html",
-    "title": "Appendix A — Test granules segmentation",
+    "title": "Appendix A — Testing stress granules segmentation",
     "section": "",
-    "text": "This notebook tests the granules segmentation algorithm using difference of gaussians (DoG) implemented in scikit-image filters.\n\n\ncount    876.000000\nmean       1.998000\nstd        1.191632\nmin        0.486000\n25%        1.101600\n50%        1.782000\n75%        2.600100\nmax       11.502000\nName: area, dtype: float64\n\n\n\n\n\n\n\nImages of the cytoplasm, filtered cytoplasm and granules identified by DoG.",
+    "text": "A.1 Granule properties\narea\n\n\n\n\ncount\n472\n\n\nmean\n1.89066\n\n\nstd\n1.19623\n\n\nmin\n0.486\n\n\n25%\n0.9639\n\n\n50%\n1.6848\n\n\n75%\n2.5353\n\n\nmax\n11.502",
     "crumbs": [
       "Appendices",
-      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Test granules segmentation</span>"
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Testing stress granules segmentation</span>"
+    ]
+  },
+  {
+    "objectID": "granules_seg.html#granule-images",
+    "href": "granules_seg.html#granule-images",
+    "title": "Appendix A — Testing stress granules segmentation",
+    "section": "A.2 Granule images",
+    "text": "A.2 Granule images\n\n\n\n\n\nImages of the cytoplasm, filtered cytoplasm and granules identified by DoG.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Testing stress granules segmentation</span>"
     ]
   },
   {
@@ -49,39 +140,6 @@
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>B</span>  <span class='chapter-title'>Test cellpose to segment cells</span>"
-    ]
-  },
-  {
-    "objectID": "intro.html",
-    "href": "intro.html",
-    "title": "Appendix C — Introduction",
-    "section": "",
-    "text": "This is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\n\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
-    "crumbs": [
-      "Appendices",
-      "<span class='chapter-number'>C</span>  <span class='chapter-title'>Introduction</span>"
-    ]
-  },
-  {
-    "objectID": "summary.html",
-    "href": "summary.html",
-    "title": "Appendix D — Summary",
-    "section": "",
-    "text": "In summary, this book has no content whatsoever.",
-    "crumbs": [
-      "Appendices",
-      "<span class='chapter-number'>D</span>  <span class='chapter-title'>Summary</span>"
-    ]
-  },
-  {
-    "objectID": "references.html",
-    "href": "references.html",
-    "title": "References",
-    "section": "",
-    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
-    "crumbs": [
-      "Appendices",
-      "References"
     ]
   }
 ]

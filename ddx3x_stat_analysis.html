@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; Statistical analyses – ddx3x-stress-granules-analyses</title>
+<title>3&nbsp; Statistical analyses – ddx3x-stress-granules-analyses</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -57,14 +57,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./granules_seg.html" rel="next">
+<link href="./references.html" rel="next">
 <link href="./ddx3x_plot_results.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -102,6 +102,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -115,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ddx3x_stat_analysis.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Statistical analyses</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ddx3x_stat_analysis.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Statistical analyses</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -151,14 +154,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./ddx3x_image_processing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Image Analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./ddx3x_plot_results.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Plots of results</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Plots of results</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ddx3x_stat_analysis.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Statistical analyses</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Statistical analyses</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -173,31 +188,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./granules_seg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Test granules segmentation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Testing stress granules segmentation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cell_seg.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Test cellpose to segment cells</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
   </div>
 </li>
       </ul>
@@ -207,15 +204,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#stress-granule-area" id="toc-stress-granule-area" class="nav-link active" data-scroll-target="#stress-granule-area"><span class="header-section-number">3.1</span> Stress granule area</a></li>
+  <li><a href="#stress-granule-count" id="toc-stress-granule-count" class="nav-link" data-scroll-target="#stress-granule-count"><span class="header-section-number">3.2</span> Stress granule count</a></li>
+  <li><a href="#stress-granule-count-excluding-cells-without-stress-granules" id="toc-stress-granule-count-excluding-cells-without-stress-granules" class="nav-link" data-scroll-target="#stress-granule-count-excluding-cells-without-stress-granules"><span class="header-section-number">3.3</span> Stress granule count excluding cells without stress granules</a></li>
+  <li><a href="#number-of-stress-granules-per-group-treatment" id="toc-number-of-stress-granules-per-group-treatment" class="nav-link" data-scroll-target="#number-of-stress-granules-per-group-treatment"><span class="header-section-number">3.4</span> Number of stress granules per group-treatment</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Statistical analyses</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Statistical analyses</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -233,37 +239,1475 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Statistical analyses were conducted using Python’s Pingouin library (version 5.5) to evaluate differences between groups. The Mann-Whitney U test was employed to compare group similarities with respect to stress granules area and the count of stress granules per cell, as this non-parametric test is appropriate for assessing differences between two independent groups without assuming normality of data distribution. Statistical significance was determined at a p-value threshold of 0.05, with results reported as median values and interquartile ranges to appropriately represent the distribution of non-normally distributed data (boxplots and violinplots).</p>
-<div id="4975ce97" class="cell" data-execution_count="4">
-<div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>array(['R326H_GLU-40min', 'R326H_ARS', 'R326H_GLU-20min', 'R326H_CT',
-       'WT_CT', 'WT_ARS', 'WT_GLU-20min', 'WT_GLU-40min'], dtype=object)</code></pre>
-</div>
-</div>
-<div id="9bcf1df7" class="cell" data-fig-title="Mann-Whitney U test results for stress granule area." data-execution_count="10">
+<section id="stress-granule-area" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="stress-granule-area"><span class="header-section-number">3.1</span> Stress granule area</h2>
+<p>In this section we report the results of the Mann-Whitney U test for stress granule area.</p>
+<div id="e462ace6" class="cell" data-fig-title="Mann-Whitney U test results for stress granule area." data-execution_count="11">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="ddx3x_stat_analysis_files/figure-html/cell-11-output-1.png" width="788" height="420" class="figure-img"></p>
+<p><img src="ddx3x_stat_analysis_files/figure-html/cell-12-output-1.png" width="930" height="493" class="figure-img"></p>
 <figcaption>Heatmap of Mann-Whitney U test results for stress granule area</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<div id="c74f8da2" class="cell" data-execution_count="11">
+<p>The table below shows the results of the Mann-Whitney U test for stress granule area.</p>
+<div id="bfb7eb7a" class="cell" data-execution_count="12">
+<div class="cell-output cell-output-display">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">a</th>
+<th data-quarto-table-cell-role="th">b</th>
+<th data-quarto-table-cell-role="th">pval</th>
+<th data-quarto-table-cell-role="th">effsize</th>
+<th data-quarto-table-cell-role="th">sig</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>WT_CT</td>
+<td>WT_CT</td>
+<td>1.000000e+00</td>
+<td>0.000000</td>
+<td></td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>WT_CT</td>
+<td>WT_ARS</td>
+<td>1.444819e-08</td>
+<td>-0.491300</td>
+<td>***</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>WT_CT</td>
+<td>WT_GLU-40min</td>
+<td>3.723332e-18</td>
+<td>-0.712830</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>WT_CT</td>
+<td>R326H_CT</td>
+<td>2.869549e-01</td>
+<td>0.370567</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>WT_CT</td>
+<td>R326H_ARS</td>
+<td>4.694069e-13</td>
+<td>-0.645084</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>WT_CT</td>
+<td>R326H_GLU-40min</td>
+<td>1.979906e-14</td>
+<td>-0.658083</td>
+<td>***</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>WT_CT</td>
+<td>L556S_CT</td>
+<td>1.833748e-01</td>
+<td>-0.100994</td>
+<td></td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>WT_CT</td>
+<td>L556S_ARS</td>
+<td>2.489017e-08</td>
+<td>-0.454045</td>
+<td>***</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>WT_CT</td>
+<td>L556S_GLU-40min</td>
+<td>8.642237e-16</td>
+<td>-0.651920</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>WT_ARS</td>
+<td>WT_ARS</td>
+<td>1.000000e+00</td>
+<td>0.000000</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10</td>
+<td>WT_ARS</td>
+<td>WT_GLU-40min</td>
+<td>1.518014e-09</td>
+<td>-0.344289</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">11</td>
+<td>WT_ARS</td>
+<td>R326H_CT</td>
+<td>7.476797e-04</td>
+<td>0.811269</td>
+<td>***</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">12</td>
+<td>WT_ARS</td>
+<td>R326H_ARS</td>
+<td>4.147449e-04</td>
+<td>-0.243542</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">13</td>
+<td>WT_ARS</td>
+<td>R326H_GLU-40min</td>
+<td>5.469063e-06</td>
+<td>-0.315777</td>
+<td>***</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">14</td>
+<td>WT_ARS</td>
+<td>L556S_CT</td>
+<td>4.041335e-07</td>
+<td>0.414520</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">15</td>
+<td>WT_ARS</td>
+<td>L556S_ARS</td>
+<td>6.819676e-01</td>
+<td>-0.034364</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">16</td>
+<td>WT_ARS</td>
+<td>L556S_GLU-40min</td>
+<td>3.026860e-08</td>
+<td>-0.355838</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">17</td>
+<td>WT_GLU-40min</td>
+<td>WT_GLU-40min</td>
+<td>1.000000e+00</td>
+<td>0.000000</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">18</td>
+<td>WT_GLU-40min</td>
+<td>R326H_CT</td>
+<td>1.341227e-05</td>
+<td>0.945012</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">19</td>
+<td>WT_GLU-40min</td>
+<td>R326H_ARS</td>
+<td>3.504465e-02</td>
+<td>0.107662</td>
+<td>*</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">20</td>
+<td>WT_GLU-40min</td>
+<td>R326H_GLU-40min</td>
+<td>1.774624e-01</td>
+<td>0.008097</td>
+<td></td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">21</td>
+<td>WT_GLU-40min</td>
+<td>L556S_CT</td>
+<td>3.408725e-19</td>
+<td>0.659057</td>
+<td>***</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">22</td>
+<td>WT_GLU-40min</td>
+<td>L556S_ARS</td>
+<td>1.747310e-11</td>
+<td>0.297401</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">23</td>
+<td>WT_GLU-40min</td>
+<td>L556S_GLU-40min</td>
+<td>6.470862e-01</td>
+<td>-0.065804</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">24</td>
+<td>R326H_CT</td>
+<td>R326H_CT</td>
+<td>1.000000e+00</td>
+<td>0.000000</td>
+<td></td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">25</td>
+<td>R326H_CT</td>
+<td>R326H_ARS</td>
+<td>1.447696e-04</td>
+<td>-0.892613</td>
+<td>***</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">26</td>
+<td>R326H_CT</td>
+<td>R326H_GLU-40min</td>
+<td>1.190401e-04</td>
+<td>-0.875171</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">27</td>
+<td>R326H_CT</td>
+<td>L556S_CT</td>
+<td>8.852778e-02</td>
+<td>-0.511138</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">28</td>
+<td>R326H_CT</td>
+<td>L556S_ARS</td>
+<td>9.773745e-04</td>
+<td>-0.716146</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">29</td>
+<td>R326H_CT</td>
+<td>L556S_GLU-40min</td>
+<td>7.071967e-05</td>
+<td>-0.843682</td>
+<td>***</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">30</td>
+<td>R326H_ARS</td>
+<td>R326H_ARS</td>
+<td>1.000000e+00</td>
+<td>0.000000</td>
+<td></td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">31</td>
+<td>R326H_ARS</td>
+<td>R326H_GLU-40min</td>
+<td>3.447954e-01</td>
+<td>-0.094542</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">32</td>
+<td>R326H_ARS</td>
+<td>L556S_CT</td>
+<td>8.781866e-13</td>
+<td>0.588608</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">33</td>
+<td>R326H_ARS</td>
+<td>L556S_ARS</td>
+<td>7.002608e-05</td>
+<td>0.195383</td>
+<td>***</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">34</td>
+<td>R326H_ARS</td>
+<td>L556S_GLU-40min</td>
+<td>7.151400e-02</td>
+<td>-0.158782</td>
+<td></td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">35</td>
+<td>R326H_GLU-40min</td>
+<td>R326H_GLU-40min</td>
+<td>1.000000e+00</td>
+<td>0.000000</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">36</td>
+<td>R326H_GLU-40min</td>
+<td>L556S_CT</td>
+<td>1.662738e-14</td>
+<td>0.606451</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">37</td>
+<td>R326H_GLU-40min</td>
+<td>L556S_ARS</td>
+<td>3.767650e-07</td>
+<td>0.275572</td>
+<td>***</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">38</td>
+<td>R326H_GLU-40min</td>
+<td>L556S_GLU-40min</td>
+<td>3.167485e-01</td>
+<td>-0.071998</td>
+<td></td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">39</td>
+<td>L556S_CT</td>
+<td>L556S_CT</td>
+<td>1.000000e+00</td>
+<td>0.000000</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">40</td>
+<td>L556S_CT</td>
+<td>L556S_ARS</td>
+<td>9.733764e-07</td>
+<td>-0.389053</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">41</td>
+<td>L556S_CT</td>
+<td>L556S_GLU-40min</td>
+<td>1.224795e-16</td>
+<td>-0.605562</td>
+<td>***</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">42</td>
+<td>L556S_ARS</td>
+<td>L556S_ARS</td>
+<td>1.000000e+00</td>
+<td>0.000000</td>
+<td></td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">43</td>
+<td>L556S_ARS</td>
+<td>L556S_GLU-40min</td>
+<td>5.722174e-10</td>
+<td>-0.323537</td>
+<td>***</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">44</td>
+<td>L556S_GLU-40min</td>
+<td>L556S_GLU-40min</td>
+<td>1.000000e+00</td>
+<td>0.000000</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="stress-granule-count" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="stress-granule-count"><span class="header-section-number">3.2</span> Stress granule count</h2>
+<p>In this section we report the results of the Mann-Whitney U test for stress granule count.</p>
+<div id="a7182c23" class="cell" data-execution_count="13">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ddx3x_stat_analysis_files/figure-html/cell-12-output-1.png" width="1345" height="668" class="figure-img"></p>
+<p><img src="ddx3x_stat_analysis_files/figure-html/cell-14-output-1.png" width="922" height="493" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="b00cd8e0" class="cell" data-execution_count="12">
+<p>The table below shows the results of the Mann-Whitney U test for stress granule count.</p>
+<div id="90af3c41" class="cell" data-execution_count="14">
+<div class="cell-output cell-output-display">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">a</th>
+<th data-quarto-table-cell-role="th">b</th>
+<th data-quarto-table-cell-role="th">pval</th>
+<th data-quarto-table-cell-role="th">effsize</th>
+<th data-quarto-table-cell-role="th">sig</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>WT_CT</td>
+<td>WT_CT</td>
+<td>1.000000e+00</td>
+<td>0.000000</td>
+<td></td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>WT_CT</td>
+<td>WT_ARS</td>
+<td>2.328439e-38</td>
+<td>-0.658002</td>
+<td>***</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>WT_CT</td>
+<td>WT_GLU-40min</td>
+<td>2.991894e-45</td>
+<td>-0.686770</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>WT_CT</td>
+<td>R326H_CT</td>
+<td>5.077542e-06</td>
+<td>0.257577</td>
+<td>***</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>WT_CT</td>
+<td>R326H_ARS</td>
+<td>1.071489e-95</td>
+<td>-1.797017</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>WT_CT</td>
+<td>R326H_GLU-40min</td>
+<td>3.311004e-110</td>
+<td>-1.312007</td>
+<td>***</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>WT_CT</td>
+<td>L556S_CT</td>
+<td>9.752523e-13</td>
+<td>-0.423307</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>WT_CT</td>
+<td>L556S_ARS</td>
+<td>2.390978e-108</td>
+<td>-1.691925</td>
+<td>***</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>WT_CT</td>
+<td>L556S_GLU-40min</td>
+<td>1.000682e-127</td>
+<td>-1.347347</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>WT_ARS</td>
+<td>WT_ARS</td>
+<td>1.000000e+00</td>
+<td>0.000000</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10</td>
+<td>WT_ARS</td>
+<td>WT_GLU-40min</td>
+<td>9.478483e-02</td>
+<td>-0.176939</td>
+<td></td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">11</td>
+<td>WT_ARS</td>
+<td>R326H_CT</td>
+<td>4.024982e-37</td>
+<td>0.705919</td>
+<td>***</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">12</td>
+<td>WT_ARS</td>
+<td>R326H_ARS</td>
+<td>2.172558e-28</td>
+<td>-0.922284</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">13</td>
+<td>WT_ARS</td>
+<td>R326H_GLU-40min</td>
+<td>1.176457e-32</td>
+<td>-0.743579</td>
+<td>***</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">14</td>
+<td>WT_ARS</td>
+<td>L556S_CT</td>
+<td>9.983112e-06</td>
+<td>0.319120</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">15</td>
+<td>WT_ARS</td>
+<td>L556S_ARS</td>
+<td>1.378148e-34</td>
+<td>-0.974151</td>
+<td>***</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">16</td>
+<td>WT_ARS</td>
+<td>L556S_GLU-40min</td>
+<td>2.196790e-47</td>
+<td>-0.926617</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">17</td>
+<td>WT_GLU-40min</td>
+<td>WT_GLU-40min</td>
+<td>1.000000e+00</td>
+<td>0.000000</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">18</td>
+<td>WT_GLU-40min</td>
+<td>R326H_CT</td>
+<td>8.598319e-40</td>
+<td>0.695015</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">19</td>
+<td>WT_GLU-40min</td>
+<td>R326H_ARS</td>
+<td>6.379375e-22</td>
+<td>-0.644555</td>
+<td>***</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">20</td>
+<td>WT_GLU-40min</td>
+<td>R326H_GLU-40min</td>
+<td>8.358479e-26</td>
+<td>-0.541465</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">21</td>
+<td>WT_GLU-40min</td>
+<td>L556S_CT</td>
+<td>3.678879e-08</td>
+<td>0.420856</td>
+<td>***</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">22</td>
+<td>WT_GLU-40min</td>
+<td>L556S_ARS</td>
+<td>3.873608e-28</td>
+<td>-0.732669</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">23</td>
+<td>WT_GLU-40min</td>
+<td>L556S_GLU-40min</td>
+<td>2.057891e-41</td>
+<td>-0.787748</td>
+<td>***</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">24</td>
+<td>R326H_CT</td>
+<td>R326H_CT</td>
+<td>1.000000e+00</td>
+<td>0.000000</td>
+<td></td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">25</td>
+<td>R326H_CT</td>
+<td>R326H_ARS</td>
+<td>7.588849e-78</td>
+<td>-1.586718</td>
+<td>***</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">26</td>
+<td>R326H_CT</td>
+<td>R326H_GLU-40min</td>
+<td>1.283138e-82</td>
+<td>-1.186750</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">27</td>
+<td>R326H_CT</td>
+<td>L556S_CT</td>
+<td>9.251632e-21</td>
+<td>-0.617582</td>
+<td>***</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">28</td>
+<td>R326H_CT</td>
+<td>L556S_ARS</td>
+<td>2.928305e-85</td>
+<td>-1.471787</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">29</td>
+<td>R326H_CT</td>
+<td>L556S_GLU-40min</td>
+<td>1.678989e-92</td>
+<td>-1.188644</td>
+<td>***</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">30</td>
+<td>R326H_ARS</td>
+<td>R326H_ARS</td>
+<td>1.000000e+00</td>
+<td>0.000000</td>
+<td></td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">31</td>
+<td>R326H_ARS</td>
+<td>R326H_GLU-40min</td>
+<td>2.412129e-01</td>
+<td>0.054510</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">32</td>
+<td>R326H_ARS</td>
+<td>L556S_CT</td>
+<td>6.627514e-38</td>
+<td>1.185861</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">33</td>
+<td>R326H_ARS</td>
+<td>L556S_ARS</td>
+<td>4.839017e-01</td>
+<td>-0.101098</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">34</td>
+<td>R326H_ARS</td>
+<td>L556S_GLU-40min</td>
+<td>1.076544e-01</td>
+<td>-0.230166</td>
+<td></td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">35</td>
+<td>R326H_GLU-40min</td>
+<td>R326H_GLU-40min</td>
+<td>1.000000e+00</td>
+<td>0.000000</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">36</td>
+<td>R326H_GLU-40min</td>
+<td>L556S_CT</td>
+<td>1.475635e-41</td>
+<td>0.922075</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">37</td>
+<td>R326H_GLU-40min</td>
+<td>L556S_ARS</td>
+<td>4.328833e-02</td>
+<td>-0.152074</td>
+<td>*</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">38</td>
+<td>R326H_GLU-40min</td>
+<td>L556S_GLU-40min</td>
+<td>1.221306e-03</td>
+<td>-0.283064</td>
+<td>**</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">39</td>
+<td>L556S_CT</td>
+<td>L556S_CT</td>
+<td>1.000000e+00</td>
+<td>0.000000</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">40</td>
+<td>L556S_CT</td>
+<td>L556S_ARS</td>
+<td>9.611689e-44</td>
+<td>-1.155181</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">41</td>
+<td>L556S_CT</td>
+<td>L556S_GLU-40min</td>
+<td>2.955185e-52</td>
+<td>-0.999123</td>
+<td>***</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">42</td>
+<td>L556S_ARS</td>
+<td>L556S_ARS</td>
+<td>1.000000e+00</td>
+<td>0.000000</td>
+<td></td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">43</td>
+<td>L556S_ARS</td>
+<td>L556S_GLU-40min</td>
+<td>3.859191e-01</td>
+<td>-0.143939</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">44</td>
+<td>L556S_GLU-40min</td>
+<td>L556S_GLU-40min</td>
+<td>1.000000e+00</td>
+<td>0.000000</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="stress-granule-count-excluding-cells-without-stress-granules" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="stress-granule-count-excluding-cells-without-stress-granules"><span class="header-section-number">3.3</span> Stress granule count excluding cells without stress granules</h2>
+<p>In this section we report the results of the Mann-Whitney U test for stress granule count excluding cells with 0 stress granules.</p>
+<div id="5141c57e" class="cell" data-execution_count="15">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ddx3x_stat_analysis_files/figure-html/cell-13-output-1.png" width="1353" height="668" class="figure-img"></p>
+<p><img src="ddx3x_stat_analysis_files/figure-html/cell-16-output-1.png" width="930" height="493" class="figure-img"></p>
 </figure>
+</div>
+</div>
+</div>
+<p>The table below shows the results of the Mann-Whitney U test for stress granule count excluding cells with 0 stress granules.</p>
+<div id="eca1dc29" class="cell" data-execution_count="16">
+<div class="cell-output cell-output-display">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">a</th>
+<th data-quarto-table-cell-role="th">b</th>
+<th data-quarto-table-cell-role="th">pval</th>
+<th data-quarto-table-cell-role="th">effsize</th>
+<th data-quarto-table-cell-role="th">sig</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>WT_CT</td>
+<td>WT_CT</td>
+<td>1.000000e+00</td>
+<td>0.000000</td>
+<td></td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>WT_CT</td>
+<td>WT_ARS</td>
+<td>3.824093e-07</td>
+<td>-0.611783</td>
+<td>***</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>WT_CT</td>
+<td>WT_GLU-40min</td>
+<td>3.670507e-15</td>
+<td>-0.935183</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>WT_CT</td>
+<td>R326H_CT</td>
+<td>5.257235e-01</td>
+<td>0.230145</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>WT_CT</td>
+<td>R326H_ARS</td>
+<td>1.184435e-17</td>
+<td>-1.128065</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>WT_CT</td>
+<td>R326H_GLU-40min</td>
+<td>2.790425e-17</td>
+<td>-0.937493</td>
+<td>***</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>WT_CT</td>
+<td>L556S_CT</td>
+<td>2.799336e-01</td>
+<td>-0.190382</td>
+<td></td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>WT_CT</td>
+<td>L556S_ARS</td>
+<td>1.051417e-15</td>
+<td>-1.000541</td>
+<td>***</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>WT_CT</td>
+<td>L556S_GLU-40min</td>
+<td>9.477464e-21</td>
+<td>-1.006275</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>WT_ARS</td>
+<td>WT_ARS</td>
+<td>1.000000e+00</td>
+<td>0.000000</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10</td>
+<td>WT_ARS</td>
+<td>WT_GLU-40min</td>
+<td>8.794329e-09</td>
+<td>-0.489219</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">11</td>
+<td>WT_ARS</td>
+<td>R326H_CT</td>
+<td>1.507377e-02</td>
+<td>0.689982</td>
+<td>*</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">12</td>
+<td>WT_ARS</td>
+<td>R326H_ARS</td>
+<td>4.592835e-12</td>
+<td>-0.732544</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">13</td>
+<td>WT_ARS</td>
+<td>R326H_GLU-40min</td>
+<td>2.396019e-12</td>
+<td>-0.623158</td>
+<td>***</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">14</td>
+<td>WT_ARS</td>
+<td>L556S_CT</td>
+<td>1.891038e-05</td>
+<td>0.479447</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">15</td>
+<td>WT_ARS</td>
+<td>L556S_ARS</td>
+<td>4.568672e-11</td>
+<td>-0.732144</td>
+<td>***</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">16</td>
+<td>WT_ARS</td>
+<td>L556S_GLU-40min</td>
+<td>1.476676e-21</td>
+<td>-0.849846</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">17</td>
+<td>WT_GLU-40min</td>
+<td>WT_GLU-40min</td>
+<td>1.000000e+00</td>
+<td>0.000000</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">18</td>
+<td>WT_GLU-40min</td>
+<td>R326H_CT</td>
+<td>7.363865e-04</td>
+<td>0.964492</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">19</td>
+<td>WT_GLU-40min</td>
+<td>R326H_ARS</td>
+<td>2.773498e-02</td>
+<td>-0.226022</td>
+<td>*</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">20</td>
+<td>WT_GLU-40min</td>
+<td>R326H_GLU-40min</td>
+<td>6.965504e-02</td>
+<td>-0.201839</td>
+<td></td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">21</td>
+<td>WT_GLU-40min</td>
+<td>L556S_CT</td>
+<td>3.384915e-14</td>
+<td>0.843682</td>
+<td>***</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">22</td>
+<td>WT_GLU-40min</td>
+<td>L556S_ARS</td>
+<td>2.559875e-02</td>
+<td>-0.307523</td>
+<td>*</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">23</td>
+<td>WT_GLU-40min</td>
+<td>L556S_GLU-40min</td>
+<td>5.534880e-08</td>
+<td>-0.550711</td>
+<td>***</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">24</td>
+<td>R326H_CT</td>
+<td>R326H_CT</td>
+<td>1.000000e+00</td>
+<td>0.000000</td>
+<td></td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">25</td>
+<td>R326H_CT</td>
+<td>R326H_ARS</td>
+<td>1.373146e-04</td>
+<td>-1.072151</td>
+<td>***</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">26</td>
+<td>R326H_CT</td>
+<td>R326H_GLU-40min</td>
+<td>3.166547e-04</td>
+<td>-0.937101</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">27</td>
+<td>R326H_CT</td>
+<td>L556S_CT</td>
+<td>2.967821e-01</td>
+<td>-0.363509</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">28</td>
+<td>R326H_CT</td>
+<td>L556S_ARS</td>
+<td>4.714899e-04</td>
+<td>-0.954757</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">29</td>
+<td>R326H_CT</td>
+<td>L556S_GLU-40min</td>
+<td>1.124235e-04</td>
+<td>-0.982660</td>
+<td>***</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">30</td>
+<td>R326H_ARS</td>
+<td>R326H_ARS</td>
+<td>1.000000e+00</td>
+<td>0.000000</td>
+<td></td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">31</td>
+<td>R326H_ARS</td>
+<td>R326H_GLU-40min</td>
+<td>5.339796e-01</td>
+<td>0.004725</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">32</td>
+<td>R326H_ARS</td>
+<td>L556S_CT</td>
+<td>8.394619e-17</td>
+<td>1.048618</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">33</td>
+<td>R326H_ARS</td>
+<td>L556S_ARS</td>
+<td>9.297615e-01</td>
+<td>-0.094989</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">34</td>
+<td>R326H_ARS</td>
+<td>L556S_GLU-40min</td>
+<td>1.086864e-02</td>
+<td>-0.353916</td>
+<td>*</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">35</td>
+<td>R326H_GLU-40min</td>
+<td>R326H_GLU-40min</td>
+<td>1.000000e+00</td>
+<td>0.000000</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">36</td>
+<td>R326H_GLU-40min</td>
+<td>L556S_CT</td>
+<td>1.396449e-16</td>
+<td>0.871550</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">37</td>
+<td>R326H_GLU-40min</td>
+<td>L556S_ARS</td>
+<td>4.883719e-01</td>
+<td>-0.096419</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">38</td>
+<td>R326H_GLU-40min</td>
+<td>L556S_GLU-40min</td>
+<td>2.541097e-04</td>
+<td>-0.366941</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">39</td>
+<td>L556S_CT</td>
+<td>L556S_CT</td>
+<td>1.000000e+00</td>
+<td>0.000000</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">40</td>
+<td>L556S_CT</td>
+<td>L556S_ARS</td>
+<td>4.434595e-15</td>
+<td>-0.943877</td>
+<td>***</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">41</td>
+<td>L556S_CT</td>
+<td>L556S_GLU-40min</td>
+<td>5.283970e-21</td>
+<td>-0.967545</td>
+<td>***</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">42</td>
+<td>L556S_ARS</td>
+<td>L556S_ARS</td>
+<td>1.000000e+00</td>
+<td>0.000000</td>
+<td></td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">43</td>
+<td>L556S_ARS</td>
+<td>L556S_GLU-40min</td>
+<td>1.248802e-02</td>
+<td>-0.270989</td>
+<td>*</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">44</td>
+<td>L556S_GLU-40min</td>
+<td>L556S_GLU-40min</td>
+<td>1.000000e+00</td>
+<td>0.000000</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="number-of-stress-granules-per-group-treatment" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="number-of-stress-granules-per-group-treatment"><span class="header-section-number">3.4</span> Number of stress granules per group-treatment</h2>
+<p>The table below shows the number of stress granules per group-treatment and some descritive statistics.</p>
+<div id="fa14b375" class="cell" data-execution_count="17">
+<div class="cell-output cell-output-display" data-execution_count="54">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th colspan="8" data-quarto-table-cell-role="th" data-halign="left">area</th>
+<th colspan="5" data-quarto-table-cell-role="th" data-halign="left">perimeter</th>
+<th colspan="8" data-quarto-table-cell-role="th" data-halign="left">eccentricity</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">count</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+<th data-quarto-table-cell-role="th">min</th>
+<th data-quarto-table-cell-role="th">25%</th>
+<th data-quarto-table-cell-role="th">50%</th>
+<th data-quarto-table-cell-role="th">75%</th>
+<th data-quarto-table-cell-role="th">max</th>
+<th data-quarto-table-cell-role="th">count</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">75%</th>
+<th data-quarto-table-cell-role="th">max</th>
+<th data-quarto-table-cell-role="th">count</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+<th data-quarto-table-cell-role="th">min</th>
+<th data-quarto-table-cell-role="th">25%</th>
+<th data-quarto-table-cell-role="th">50%</th>
+<th data-quarto-table-cell-role="th">75%</th>
+<th data-quarto-table-cell-role="th">max</th>
+</tr>
+<tr class="header">
+<th data-quarto-table-cell-role="th">group</th>
+<th data-quarto-table-cell-role="th">treatment</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="3" data-quarto-table-cell-role="th" data-valign="top">L556S</td>
+<td data-quarto-table-cell-role="th">ARS</td>
+<td>691.0</td>
+<td>1.666607</td>
+<td>1.091191</td>
+<td>0.486</td>
+<td>0.8748</td>
+<td>1.3608</td>
+<td>2.1060</td>
+<td>9.6228</td>
+<td>691.0</td>
+<td>4.356356</td>
+<td>...</td>
+<td>5.171026</td>
+<td>20.578662</td>
+<td>691.0</td>
+<td>0.627862</td>
+<td>0.184972</td>
+<td>0.000000</td>
+<td>0.513572</td>
+<td>0.625943</td>
+<td>0.766329</td>
+<td>0.986992</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">CT</td>
+<td>180.0</td>
+<td>1.265400</td>
+<td>0.751034</td>
+<td>0.486</td>
+<td>0.7128</td>
+<td>1.0368</td>
+<td>1.5876</td>
+<td>5.0544</td>
+<td>180.0</td>
+<td>3.680375</td>
+<td>...</td>
+<td>4.301909</td>
+<td>13.844104</td>
+<td>180.0</td>
+<td>0.589241</td>
+<td>0.191811</td>
+<td>0.000000</td>
+<td>0.474023</td>
+<td>0.588505</td>
+<td>0.728852</td>
+<td>0.982201</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">GLU-40min</td>
+<td>1332.0</td>
+<td>2.096149</td>
+<td>1.434272</td>
+<td>0.486</td>
+<td>1.0044</td>
+<td>1.6848</td>
+<td>2.7540</td>
+<td>10.4976</td>
+<td>1332.0</td>
+<td>4.983623</td>
+<td>...</td>
+<td>5.934701</td>
+<td>17.927636</td>
+<td>1332.0</td>
+<td>0.646837</td>
+<td>0.183042</td>
+<td>0.000000</td>
+<td>0.523866</td>
+<td>0.649439</td>
+<td>0.789965</td>
+<td>0.983591</td>
+</tr>
+<tr class="even">
+<td rowspan="3" data-quarto-table-cell-role="th" data-valign="top">R326H</td>
+<td data-quarto-table-cell-role="th">ARS</td>
+<td>605.0</td>
+<td>1.882627</td>
+<td>1.120533</td>
+<td>0.486</td>
+<td>1.0044</td>
+<td>1.6848</td>
+<td>2.5272</td>
+<td>7.4196</td>
+<td>605.0</td>
+<td>4.665341</td>
+<td>...</td>
+<td>5.680143</td>
+<td>17.996896</td>
+<td>605.0</td>
+<td>0.639020</td>
+<td>0.181585</td>
+<td>0.000000</td>
+<td>0.510215</td>
+<td>0.642449</td>
+<td>0.776232</td>
+<td>0.980406</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">CT</td>
+<td>14.0</td>
+<td>0.891000</td>
+<td>0.309403</td>
+<td>0.486</td>
+<td>0.7371</td>
+<td>0.8100</td>
+<td>1.0611</td>
+<td>1.5228</td>
+<td>14.0</td>
+<td>2.971227</td>
+<td>...</td>
+<td>3.327351</td>
+<td>4.047351</td>
+<td>14.0</td>
+<td>0.561236</td>
+<td>0.114290</td>
+<td>0.426655</td>
+<td>0.491940</td>
+<td>0.521188</td>
+<td>0.588426</td>
+<td>0.830147</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">GLU-40min</td>
+<td>999.0</td>
+<td>1.997708</td>
+<td>1.271337</td>
+<td>0.486</td>
+<td>0.9720</td>
+<td>1.6524</td>
+<td>2.7216</td>
+<td>7.2576</td>
+<td>999.0</td>
+<td>4.838104</td>
+<td>...</td>
+<td>6.040143</td>
+<td>13.098519</td>
+<td>999.0</td>
+<td>0.682040</td>
+<td>0.168841</td>
+<td>0.000000</td>
+<td>0.565697</td>
+<td>0.691411</td>
+<td>0.819727</td>
+<td>0.971741</td>
+</tr>
+<tr class="odd">
+<td rowspan="3" data-quarto-table-cell-role="th" data-valign="top">WT</td>
+<td data-quarto-table-cell-role="th">ARS</td>
+<td>552.0</td>
+<td>1.631563</td>
+<td>0.921098</td>
+<td>0.486</td>
+<td>0.9072</td>
+<td>1.4256</td>
+<td>2.1060</td>
+<td>6.1884</td>
+<td>552.0</td>
+<td>4.269373</td>
+<td>...</td>
+<td>5.171026</td>
+<td>12.229403</td>
+<td>552.0</td>
+<td>0.630785</td>
+<td>0.174492</td>
+<td>0.000000</td>
+<td>0.516561</td>
+<td>0.629057</td>
+<td>0.761414</td>
+<td>0.983689</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">CT</td>
+<td>118.0</td>
+<td>1.186169</td>
+<td>0.828374</td>
+<td>0.486</td>
+<td>0.6804</td>
+<td>0.9558</td>
+<td>1.4094</td>
+<td>6.6096</td>
+<td>118.0</td>
+<td>3.505283</td>
+<td>...</td>
+<td>4.126432</td>
+<td>9.894701</td>
+<td>118.0</td>
+<td>0.592587</td>
+<td>0.178478</td>
+<td>0.000000</td>
+<td>0.502130</td>
+<td>0.584013</td>
+<td>0.705129</td>
+<td>0.978226</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">GLU-40min</td>
+<td>857.0</td>
+<td>2.007704</td>
+<td>1.188982</td>
+<td>0.486</td>
+<td>1.1016</td>
+<td>1.7820</td>
+<td>2.6244</td>
+<td>11.5020</td>
+<td>857.0</td>
+<td>4.887295</td>
+<td>...</td>
+<td>5.822864</td>
+<td>19.542338</td>
+<td>857.0</td>
+<td>0.675274</td>
+<td>0.168816</td>
+<td>0.000000</td>
+<td>0.565575</td>
+<td>0.688883</td>
+<td>0.801755</td>
+<td>0.982561</td>
+</tr>
+</tbody>
+</table>
+
+<p>9 rows × 24 columns</p>
 </div>
 </div>
 </div>
@@ -271,6 +1715,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <!-- -->
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -747,122 +2192,191 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./ddx3x_plot_results.html" class="pagination-link" aria-label="Plots of results">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Plots of results</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Plots of results</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./granules_seg.html" class="pagination-link" aria-label="Test granules segmentation">
-        <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Test granules segmentation</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb2" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Statistical analyses</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>Statistical analyses were conducted using Python's Pingouin library (version 5.5) to evaluate differences between groups. The Mann-Whitney U test was employed to compare group similarities with respect to stress granules area and the count of stress granules per cell, as this non-parametric test is appropriate for assessing differences between two independent groups without assuming normality of data distribution. Statistical significance was determined at a p-value threshold of 0.05, with results reported as median values and interquartile ranges to appropriately represent the distribution of non-normally distributed data (boxplots and violinplots).</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pingouin <span class="im">as</span> pg</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>cells_df <span class="op">=</span> pd.read_csv(<span class="st">"output/granules_per_cell.csv"</span>)</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>granules_df <span class="op">=</span> pd.read_csv(<span class="st">"output/granule_area.csv"</span>)</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>cells_df[<span class="st">"group_treatment"</span>] <span class="op">=</span> cells_df.<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="ss">f'</span><span class="sc">{</span>x<span class="sc">.</span>group<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>x<span class="sc">.</span>treatment<span class="sc">}</span><span class="ss">'</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>granules_df[<span class="st">"group_treatment"</span>] <span class="op">=</span> granules_df.<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="ss">f'</span><span class="sc">{</span>x<span class="sc">.</span>group<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>x<span class="sc">.</span>treatment<span class="sc">}</span><span class="ss">'</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>cells_df.group_treatment.unique()</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> [<span class="st">'WT_CT'</span>, <span class="st">'WT_ARS'</span>, <span class="st">'WT_GLU-20min'</span>, <span class="st">'WT_GLU-40min'</span>, <span class="st">'R326H_CT'</span>, <span class="st">'R326H_ARS'</span>, <span class="st">'R326H_GLU-20min'</span>, <span class="st">'R326H_GLU-40min'</span>]</span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>mw_area_tests <span class="op">=</span> []</span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(g)):    </span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i, <span class="bu">len</span>(g)):</span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>        result_mw <span class="op">=</span> pg.mwu(granules_df[granules_df.group_treatment <span class="op">==</span> g[i]][<span class="st">'area'</span>], granules_df[granules_df.group_treatment <span class="op">==</span> g[j]][<span class="st">'area'</span>])</span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>        result_effsize <span class="op">=</span> pg.compute_effsize(granules_df[granules_df.group_treatment <span class="op">==</span> g[i]][<span class="st">'area'</span>], granules_df[granules_df.group_treatment <span class="op">==</span> g[j]][<span class="st">'area'</span>], eftype<span class="op">=</span><span class="st">"hedges"</span>)</span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>        mw_area_tests.append({<span class="st">"a"</span>: g[i], <span class="st">"b"</span>: g[j], <span class="st">"pval"</span>:result_mw[<span class="st">'p-val'</span>].values[<span class="dv">0</span>], <span class="st">"effsize"</span>:result_effsize})</span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>mw_count_tests <span class="op">=</span> []</span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(g)):</span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i, <span class="bu">len</span>(g)):</span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>        result_mw <span class="op">=</span> pg.mwu(cells_df[cells_df.group_treatment <span class="op">==</span> g[i]][<span class="st">'granule_count'</span>], cells_df[cells_df.group_treatment <span class="op">==</span> g[j]][<span class="st">'granule_count'</span>])</span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>        result_effsize <span class="op">=</span> pg.compute_effsize(cells_df[cells_df.group_treatment <span class="op">==</span> g[i]][<span class="st">'granule_count'</span>], cells_df[cells_df.group_treatment <span class="op">==</span> g[j]][<span class="st">'granule_count'</span>], eftype<span class="op">=</span><span class="st">"hedges"</span>)</span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>        mw_count_tests.append({<span class="st">"a"</span>: g[i], <span class="st">"b"</span>: g[j], <span class="st">"pval"</span>:result_mw[<span class="st">'p-val'</span>].values[<span class="dv">0</span>], <span class="st">"effsize"</span>:result_effsize})</span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>mw_count_wout_zeros_tests <span class="op">=</span> []</span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(g)):</span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i, <span class="bu">len</span>(g)):</span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>        result_mw <span class="op">=</span> pg.mwu(cells_df[(cells_df.group_treatment <span class="op">==</span> g[i])<span class="op">&amp;</span>(cells_df.granule_count <span class="op">&gt;</span> <span class="dv">0</span>)][<span class="st">'granule_count'</span>], cells_df[(cells_df.group_treatment <span class="op">==</span> g[j])<span class="op">&amp;</span>(cells_df.granule_count <span class="op">&gt;</span> <span class="dv">0</span>)][<span class="st">'granule_count'</span>])</span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>        result_effsize <span class="op">=</span> pg.compute_effsize(cells_df[(cells_df.group_treatment <span class="op">==</span> g[i])<span class="op">&amp;</span>(cells_df.granule_count <span class="op">&gt;</span> <span class="dv">0</span>)][<span class="st">'granule_count'</span>], cells_df[(cells_df.group_treatment <span class="op">==</span> g[j])<span class="op">&amp;</span>(cells_df.granule_count <span class="op">&gt;</span> <span class="dv">0</span>)][<span class="st">'granule_count'</span>], eftype<span class="op">=</span><span class="st">"hedges"</span>)</span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>        mw_count_wout_zeros_tests.append({<span class="st">"a"</span>: g[i], <span class="st">"b"</span>: g[j], <span class="st">"pval"</span>:result_mw[<span class="st">'p-val'</span>].values[<span class="dv">0</span>], <span class="st">"effsize"</span>:result_effsize})</span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>df_sg_count_tests <span class="op">=</span> pd.DataFrame(mw_count_tests)</span>
-<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>df_sg_count_wout_zeros_tests <span class="op">=</span> pd.DataFrame(mw_count_wout_zeros_tests)</span>
-<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>df_area_tests <span class="op">=</span> pd.DataFrame(mw_area_tests)</span>
-<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a><span class="co"># .pivot(index="a", columns="b", values="pval")</span></span>
-<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a><span class="co"># df_tmp = df_tmp[g].sort_values(by=g)</span></span>
-<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a><span class="co">#|fig-cap: "Heatmap of Mann-Whitney U test results for stress granule area"</span></span>
-<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a><span class="co">#|fig-align: "center"</span></span>
-<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a><span class="co">#|fig-title: "Mann-Whitney U test results for stress granule area."</span></span>
-<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">3</span>), sharey<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a><span class="co"># fig, axs = plt.subplots(1,2, figsize=(16,6))</span></span>
-<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>df_tmp1 <span class="op">=</span> df_area_tests.pivot(index<span class="op">=</span><span class="st">"a"</span>, columns<span class="op">=</span><span class="st">"b"</span>, values<span class="op">=</span><span class="st">"pval"</span>)[g].sort_values(by<span class="op">=</span>g)</span>
-<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>sns.heatmap(df_tmp1, ax<span class="op">=</span>axs[<span class="dv">0</span>], square<span class="op">=</span><span class="va">True</span>, annot<span class="op">=</span><span class="va">True</span>, fmt<span class="op">=</span><span class="st">'.3f'</span>, vmax<span class="op">=</span><span class="fl">0.1</span>, annot_kws<span class="op">=</span>{<span class="st">"size"</span>: <span class="dv">5</span>})</span>
-<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a>df_tmp2 <span class="op">=</span> df_area_tests.pivot(index<span class="op">=</span><span class="st">"a"</span>, columns<span class="op">=</span><span class="st">"b"</span>, values<span class="op">=</span><span class="st">"effsize"</span>)[g].sort_values(by<span class="op">=</span>g)</span>
-<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a>sns.heatmap(df_tmp2, ax<span class="op">=</span>axs[<span class="dv">1</span>], square<span class="op">=</span><span class="va">True</span>, annot<span class="op">=</span><span class="va">True</span>, fmt<span class="op">=</span><span class="st">'.3f'</span>, cmap<span class="op">=</span><span class="st">"coolwarm"</span>, center<span class="op">=</span><span class="dv">0</span>, annot_kws<span class="op">=</span>{<span class="st">"size"</span>: <span class="dv">5</span>})</span>
-<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_title(<span class="st">"Mann-Whitney U test (p-value)"</span>)</span>
-<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_title(<span class="st">"Hedges' g effect size"</span>)</span>
-<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_ylabel(<span class="st">"Group"</span>)</span>
-<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_ylabel(<span class="st">"Group"</span>)</span>
-<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_xlabel(<span class="st">"Group"</span>)</span>
-<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_xlabel(<span class="st">"Group"</span>)</span>
-<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">"Area"</span>, fontsize<span class="op">=</span><span class="dv">20</span>)</span>
-<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a>fig.savefig(<span class="st">"plots/mw_area.png"</span>)</span>
-<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">16</span>,<span class="dv">6</span>))</span>
-<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a>df_tmp1 <span class="op">=</span> df_sg_count_tests.pivot(index<span class="op">=</span><span class="st">"a"</span>, columns<span class="op">=</span><span class="st">"b"</span>, values<span class="op">=</span><span class="st">"pval"</span>)[g].sort_values(by<span class="op">=</span>g)</span>
-<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a>sns.heatmap(df_tmp1, ax<span class="op">=</span>axs[<span class="dv">0</span>], square<span class="op">=</span><span class="va">True</span>, annot<span class="op">=</span><span class="va">True</span>, fmt<span class="op">=</span><span class="st">'.3f'</span>, vmax<span class="op">=</span><span class="fl">0.1</span>)</span>
-<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a>df_tmp2 <span class="op">=</span> df_sg_count_tests.pivot(index<span class="op">=</span><span class="st">"a"</span>, columns<span class="op">=</span><span class="st">"b"</span>, values<span class="op">=</span><span class="st">"effsize"</span>)[g].sort_values(by<span class="op">=</span>g)</span>
-<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a>sns.heatmap(df_tmp2, ax<span class="op">=</span>axs[<span class="dv">1</span>], square<span class="op">=</span><span class="va">True</span>, annot<span class="op">=</span><span class="va">True</span>, fmt<span class="op">=</span><span class="st">'.3f'</span>, cmap<span class="op">=</span><span class="st">"coolwarm"</span>, center<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_title(<span class="st">"Mann-Whitney U test (p-value)"</span>)</span>
-<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_title(<span class="st">"Hedges' g effect size"</span>)</span>
-<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">"Count per cell"</span>, fontsize<span class="op">=</span><span class="dv">20</span>)</span>
-<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a>fig.savefig(<span class="st">"plots/mw_count.png"</span>)</span>
-<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">16</span>,<span class="dv">6</span>))</span>
-<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a>df_tmp1 <span class="op">=</span> df_sg_count_wout_zeros_tests.pivot(index<span class="op">=</span><span class="st">"a"</span>, columns<span class="op">=</span><span class="st">"b"</span>, values<span class="op">=</span><span class="st">"pval"</span>)[g].sort_values(by<span class="op">=</span>g)</span>
-<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a>sns.heatmap(df_tmp1, ax<span class="op">=</span>axs[<span class="dv">0</span>], square<span class="op">=</span><span class="va">True</span>, annot<span class="op">=</span><span class="va">True</span>, fmt<span class="op">=</span><span class="st">'.3f'</span>, vmax<span class="op">=</span><span class="fl">0.1</span>)</span>
-<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a>df_tmp2 <span class="op">=</span> df_sg_count_wout_zeros_tests.pivot(index<span class="op">=</span><span class="st">"a"</span>, columns<span class="op">=</span><span class="st">"b"</span>, values<span class="op">=</span><span class="st">"effsize"</span>)[g].sort_values(by<span class="op">=</span>g)</span>
-<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a>sns.heatmap(df_tmp2, ax<span class="op">=</span>axs[<span class="dv">1</span>], square<span class="op">=</span><span class="va">True</span>, annot<span class="op">=</span><span class="va">True</span>, fmt<span class="op">=</span><span class="st">'.3f'</span>, cmap<span class="op">=</span><span class="st">"coolwarm"</span>, center<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_title(<span class="st">"Mann-Whitney U test (p-value)"</span>)</span>
-<span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_title(<span class="st">"Hedges' g effect size"</span>)</span>
-<span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">"Count per cell (without zeros)"</span>, fontsize<span class="op">=</span><span class="dv">20</span>)</span>
-<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a>fig.savefig(<span class="st">"plots/mw_count_wout_zeros.png"</span>)</span>
-<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Statistical analyses</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Statistical analyses were conducted using Python's Pingouin library (version 5.5) to evaluate differences between groups. The Mann-Whitney U test was employed to compare group similarities with respect to stress granules area and the count of stress granules per cell, as this non-parametric test is appropriate for assessing differences between two independent groups without assuming normality of data distribution. Statistical significance was determined at a p-value threshold of 0.05, with results reported as median values and interquartile ranges to appropriately represent the distribution of non-normally distributed data (boxplots and violinplots).</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pingouin <span class="im">as</span> pg</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display, HTML</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>cells_df <span class="op">=</span> pd.read_csv(<span class="st">"output/granules_per_cell.csv"</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>granules_df <span class="op">=</span> pd.read_csv(<span class="st">"output/granule_area.csv"</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>cells_df[<span class="st">"group_treatment"</span>] <span class="op">=</span> cells_df.<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="ss">f'</span><span class="sc">{</span>x<span class="sc">.</span>group<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>x<span class="sc">.</span>treatment<span class="sc">}</span><span class="ss">'</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>granules_df[<span class="st">"group_treatment"</span>] <span class="op">=</span> granules_df.<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="ss">f'</span><span class="sc">{</span>x<span class="sc">.</span>group<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>x<span class="sc">.</span>treatment<span class="sc">}</span><span class="ss">'</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co"># create a list of group-treatment combinations</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> [</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    <span class="st">'WT_CT'</span>, <span class="st">'WT_ARS'</span>, <span class="st">'WT_GLU-40min'</span>, </span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="st">'R326H_CT'</span>, <span class="st">'R326H_ARS'</span>, <span class="st">'R326H_GLU-40min'</span>,</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="st">'L556S_CT'</span>, <span class="st">'L556S_ARS'</span>, <span class="st">'L556S_GLU-40min'</span>]</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>mw_area_tests <span class="op">=</span> []</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(g)):    </span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i, <span class="bu">len</span>(g)):</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>        result_mw <span class="op">=</span> pg.mwu(granules_df[granules_df.group_treatment <span class="op">==</span> g[i]][<span class="st">'area'</span>], granules_df[granules_df.group_treatment <span class="op">==</span> g[j]][<span class="st">'area'</span>])</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>        result_effsize <span class="op">=</span> pg.compute_effsize(granules_df[granules_df.group_treatment <span class="op">==</span> g[i]][<span class="st">'area'</span>], granules_df[granules_df.group_treatment <span class="op">==</span> g[j]][<span class="st">'area'</span>], eftype<span class="op">=</span><span class="st">"hedges"</span>)</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>        mw_area_tests.append({<span class="st">"a"</span>: g[i], <span class="st">"b"</span>: g[j], <span class="st">"pval"</span>:result_mw[<span class="st">'p-val'</span>].values[<span class="dv">0</span>], <span class="st">"effsize"</span>:result_effsize})</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>mw_count_tests <span class="op">=</span> []</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(g)):</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i, <span class="bu">len</span>(g)):</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>        result_mw <span class="op">=</span> pg.mwu(cells_df[cells_df.group_treatment <span class="op">==</span> g[i]][<span class="st">'granule_count'</span>], cells_df[cells_df.group_treatment <span class="op">==</span> g[j]][<span class="st">'granule_count'</span>])</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>        result_effsize <span class="op">=</span> pg.compute_effsize(cells_df[cells_df.group_treatment <span class="op">==</span> g[i]][<span class="st">'granule_count'</span>], cells_df[cells_df.group_treatment <span class="op">==</span> g[j]][<span class="st">'granule_count'</span>], eftype<span class="op">=</span><span class="st">"hedges"</span>)</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>        mw_count_tests.append({<span class="st">"a"</span>: g[i], <span class="st">"b"</span>: g[j], <span class="st">"pval"</span>:result_mw[<span class="st">'p-val'</span>].values[<span class="dv">0</span>], <span class="st">"effsize"</span>:result_effsize})</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>mw_count_wout_zeros_tests <span class="op">=</span> []</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(g)):</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i, <span class="bu">len</span>(g)):</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>        result_mw <span class="op">=</span> pg.mwu(cells_df[(cells_df.group_treatment <span class="op">==</span> g[i])<span class="op">&amp;</span>(cells_df.granule_count <span class="op">&gt;</span> <span class="dv">0</span>)][<span class="st">'granule_count'</span>], cells_df[(cells_df.group_treatment <span class="op">==</span> g[j])<span class="op">&amp;</span>(cells_df.granule_count <span class="op">&gt;</span> <span class="dv">0</span>)][<span class="st">'granule_count'</span>])</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>        result_effsize <span class="op">=</span> pg.compute_effsize(cells_df[(cells_df.group_treatment <span class="op">==</span> g[i])<span class="op">&amp;</span>(cells_df.granule_count <span class="op">&gt;</span> <span class="dv">0</span>)][<span class="st">'granule_count'</span>], cells_df[(cells_df.group_treatment <span class="op">==</span> g[j])<span class="op">&amp;</span>(cells_df.granule_count <span class="op">&gt;</span> <span class="dv">0</span>)][<span class="st">'granule_count'</span>], eftype<span class="op">=</span><span class="st">"hedges"</span>)</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>        mw_count_wout_zeros_tests.append({<span class="st">"a"</span>: g[i], <span class="st">"b"</span>: g[j], <span class="st">"pval"</span>:result_mw[<span class="st">'p-val'</span>].values[<span class="dv">0</span>], <span class="st">"effsize"</span>:result_effsize})</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>df_sg_count_tests <span class="op">=</span> pd.DataFrame(mw_count_tests)</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>df_sg_count_wout_zeros_tests <span class="op">=</span> pd.DataFrame(mw_count_wout_zeros_tests)</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>df_area_tests <span class="op">=</span> pd.DataFrame(mw_area_tests)</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> flag_sig(pval):</span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> pval <span class="op">&lt;</span> <span class="fl">0.001</span>:</span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"***"</span></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> pval <span class="op">&lt;</span> <span class="fl">0.01</span>:</span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"**"</span></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> pval <span class="op">&lt;</span> <span class="fl">0.05</span>:</span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"*"</span></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">""</span></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="co"># add significance flag to all dataframes</span></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>df_sg_count_tests[<span class="st">"sig"</span>] <span class="op">=</span> df_sg_count_tests[<span class="st">"pval"</span>].<span class="bu">apply</span>(flag_sig)</span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>df_sg_count_wout_zeros_tests[<span class="st">"sig"</span>] <span class="op">=</span> df_sg_count_wout_zeros_tests[<span class="st">"pval"</span>].<span class="bu">apply</span>(flag_sig)</span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a>df_area_tests[<span class="st">"sig"</span>] <span class="op">=</span> df_area_tests[<span class="st">"pval"</span>].<span class="bu">apply</span>(flag_sig)</span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="fu">## Stress granule area</span></span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>In this section we report the results of the Mann-Whitney U test for stress granule area.</span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a><span class="co">#|fig-cap: "Heatmap of Mann-Whitney U test results for stress granule area"</span></span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a><span class="co">#|fig-align: "center"</span></span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a><span class="co">#|fig-title: "Mann-Whitney U test results for stress granule area."</span></span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">4</span>), sharey<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a><span class="co"># fig, axs = plt.subplots(1,2, figsize=(16,6))</span></span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a>df_tmp1 <span class="op">=</span> df_area_tests.pivot(index<span class="op">=</span><span class="st">"a"</span>, columns<span class="op">=</span><span class="st">"b"</span>, values<span class="op">=</span><span class="st">"pval"</span>)[g].sort_values(by<span class="op">=</span>g)</span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a>sns.heatmap(df_tmp1, ax<span class="op">=</span>axs[<span class="dv">0</span>], square<span class="op">=</span><span class="va">True</span>, annot<span class="op">=</span><span class="va">True</span>, fmt<span class="op">=</span><span class="st">'.3f'</span>, vmax<span class="op">=</span><span class="fl">0.1</span>, annot_kws<span class="op">=</span>{<span class="st">"size"</span>: <span class="dv">6</span>})</span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a>df_tmp2 <span class="op">=</span> df_area_tests.pivot(index<span class="op">=</span><span class="st">"a"</span>, columns<span class="op">=</span><span class="st">"b"</span>, values<span class="op">=</span><span class="st">"effsize"</span>)[g].sort_values(by<span class="op">=</span>g)</span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a>sns.heatmap(df_tmp2, ax<span class="op">=</span>axs[<span class="dv">1</span>], square<span class="op">=</span><span class="va">True</span>, annot<span class="op">=</span><span class="va">True</span>, fmt<span class="op">=</span><span class="st">'.3f'</span>, cmap<span class="op">=</span><span class="st">"coolwarm"</span>, center<span class="op">=</span><span class="dv">0</span>, annot_kws<span class="op">=</span>{<span class="st">"size"</span>: <span class="dv">6</span>})</span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_title(<span class="st">"Mann-Whitney U test (p-value)"</span>)</span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_title(<span class="st">"Hedges' g effect size"</span>)</span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_ylabel(<span class="st">"Group"</span>)</span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_ylabel(<span class="st">"Group"</span>)</span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_xlabel(<span class="st">"Group"</span>)</span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_xlabel(<span class="st">"Group"</span>)</span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">"Area"</span>, fontsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a>fig.savefig(<span class="st">"plots/mw_area.png"</span>)</span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a>The table below shows the results of the Mann-Whitney U test for stress granule area.</span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a>display(HTML(df_area_tests.to_html()))</span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a><span class="fu">## Stress granule count</span></span>
+<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a>In this section we report the results of the Mann-Whitney U test for stress granule count.</span>
+<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">4</span>), sharey<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a>df_tmp1 <span class="op">=</span> df_sg_count_tests.pivot(index<span class="op">=</span><span class="st">"a"</span>, columns<span class="op">=</span><span class="st">"b"</span>, values<span class="op">=</span><span class="st">"pval"</span>)[g].sort_values(by<span class="op">=</span>g)</span>
+<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a>sns.heatmap(df_tmp1, ax<span class="op">=</span>axs[<span class="dv">0</span>], square<span class="op">=</span><span class="va">True</span>, annot<span class="op">=</span><span class="va">True</span>, fmt<span class="op">=</span><span class="st">'.3f'</span>, vmax<span class="op">=</span><span class="fl">0.1</span>, annot_kws<span class="op">=</span>{<span class="st">"size"</span>: <span class="dv">6</span>})</span>
+<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a>df_tmp2 <span class="op">=</span> df_sg_count_tests.pivot(index<span class="op">=</span><span class="st">"a"</span>, columns<span class="op">=</span><span class="st">"b"</span>, values<span class="op">=</span><span class="st">"effsize"</span>)[g].sort_values(by<span class="op">=</span>g)</span>
+<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a>sns.heatmap(df_tmp2, ax<span class="op">=</span>axs[<span class="dv">1</span>], square<span class="op">=</span><span class="va">True</span>, annot<span class="op">=</span><span class="va">True</span>, fmt<span class="op">=</span><span class="st">'.3f'</span>, cmap<span class="op">=</span><span class="st">"coolwarm"</span>, center<span class="op">=</span><span class="dv">0</span>, annot_kws<span class="op">=</span>{<span class="st">"size"</span>: <span class="dv">6</span>})</span>
+<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_title(<span class="st">"Mann-Whitney U test (p-value)"</span>)</span>
+<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_title(<span class="st">"Hedges' g effect size"</span>)</span>
+<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_ylabel(<span class="st">"Group"</span>)</span>
+<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_ylabel(<span class="st">"Group"</span>)</span>
+<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_xlabel(<span class="st">"Group"</span>)</span>
+<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_xlabel(<span class="st">"Group"</span>)</span>
+<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">"Count per cell"</span>, fontsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a>fig.savefig(<span class="st">"plots/mw_count.png"</span>)</span>
+<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a>The table below shows the results of the Mann-Whitney U test for stress granule count.</span>
+<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a>display(HTML(df_sg_count_tests.to_html()))</span>
+<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a><span class="fu">## Stress granule count excluding cells without stress granules</span></span>
+<span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a>In this section we report the results of the Mann-Whitney U test for stress granule count excluding cells with 0 stress granules.</span>
+<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">4</span>), sharey<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a>df_tmp1 <span class="op">=</span> df_sg_count_wout_zeros_tests.pivot(index<span class="op">=</span><span class="st">"a"</span>, columns<span class="op">=</span><span class="st">"b"</span>, values<span class="op">=</span><span class="st">"pval"</span>)[g].sort_values(by<span class="op">=</span>g)</span>
+<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a>sns.heatmap(df_tmp1, ax<span class="op">=</span>axs[<span class="dv">0</span>], square<span class="op">=</span><span class="va">True</span>, annot<span class="op">=</span><span class="va">True</span>, fmt<span class="op">=</span><span class="st">'.3f'</span>, vmax<span class="op">=</span><span class="fl">0.1</span>, annot_kws<span class="op">=</span>{<span class="st">"size"</span>: <span class="dv">6</span>})</span>
+<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a>df_tmp2 <span class="op">=</span> df_sg_count_wout_zeros_tests.pivot(index<span class="op">=</span><span class="st">"a"</span>, columns<span class="op">=</span><span class="st">"b"</span>, values<span class="op">=</span><span class="st">"effsize"</span>)[g].sort_values(by<span class="op">=</span>g)</span>
+<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a>sns.heatmap(df_tmp2, ax<span class="op">=</span>axs[<span class="dv">1</span>], square<span class="op">=</span><span class="va">True</span>, annot<span class="op">=</span><span class="va">True</span>, fmt<span class="op">=</span><span class="st">'.3f'</span>, cmap<span class="op">=</span><span class="st">"coolwarm"</span>, center<span class="op">=</span><span class="dv">0</span>, annot_kws<span class="op">=</span>{<span class="st">"size"</span>: <span class="dv">6</span>})</span>
+<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_title(<span class="st">"Mann-Whitney U test (p-value)"</span>)</span>
+<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_title(<span class="st">"Hedges' g effect size"</span>)</span>
+<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_ylabel(<span class="st">"Group"</span>)</span>
+<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_ylabel(<span class="st">"Group"</span>)</span>
+<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_xlabel(<span class="st">"Group"</span>)</span>
+<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_xlabel(<span class="st">"Group"</span>)</span>
+<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">"Count per cell (without zeros)"</span>, fontsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a>fig.savefig(<span class="st">"plots/mw_count_wout_zeros.png"</span>)</span>
+<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a>The table below shows the results of the Mann-Whitney U test for stress granule count excluding cells with 0 stress granules.</span>
+<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a>display(HTML(df_sg_count_wout_zeros_tests.to_html()))</span>
+<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a><span class="fu">## Number of stress granules per group-treatment</span></span>
+<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a>The table below shows the number of stress granules per group-treatment and some descritive statistics.</span>
+<span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a>granules_df.groupby([<span class="st">"group"</span>, <span class="st">"treatment"</span>])[[<span class="st">'area'</span>, <span class="st">'perimeter'</span>, <span class="st">'eccentricity'</span>]].describe()</span>
+<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a><span class="co"># granules_df.groupby(["group", "treatment", "image_number"]).count()</span></span>
+<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
