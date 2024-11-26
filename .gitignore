@@ -1,7 +1,7 @@
 # ignore data
-data/
-figures/
-plots/
+data/*
+figures/*
+report/*
 *-bck/
 
 .quarto/
