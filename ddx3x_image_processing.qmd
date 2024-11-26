@@ -6,17 +6,9 @@ jupyter: python3
 
 Confocal microscopy images were analyzed using a custom Python pipeline. Maximum intensity Z-projections were generated for both DAPI and GFP channels. For granule detection, the GFP channel was preprocessed using Difference of Gaussians filtering (σ₁ = 3.0, σ₂ = 4.8) to enhance punctate structures while suppressing background noise. Granules were segmented using a global intensity threshold of 0.0009, followed by removal of objects smaller than 15 pixels and those touching image borders. 
 
-Cell segmentation was performed using Cellpose v3.1 [10.1038/s41592-020-01018-x] with the cyto3 model [10.1101/2024.02.10.579780]. Prior to segmentation, images were preprocessed with Gaussian smoothing (σ = 0.5 for GFP and σ = 1.0 for DAPI channels) and intensity rescaling to the [0,1] range. The model was configured with a target cell diameter of 100 pixels and minimum size threshold of 30 pixels. Cell masks were expanded by 5 pixels and border-touching cells were excluded from analysis.
+Cell segmentation was performed using Cellpose v3.1 [@stringerCellposeGeneralistAlgorithm2021] with the cyto3 model [@stringerCellpose3OneclickImage2024]. Prior to segmentation, images were preprocessed with Gaussian smoothing (σ = 0.5 for GFP and σ = 1.0 for DAPI channels) and intensity rescaling to the [0,1] range. The model was configured with a target cell diameter of 100 pixels and minimum size threshold of 30 pixels. Cell masks were expanded by 5 pixels and border-touching cells were excluded from analysis.
 
-Morphometric measurements including area, perimeter, and eccentricity were calculated for both granules and cells using scikit-image v0.24 [10.7717/peerj.453]. All measurements were converted to physical units using the microscope's calibrated pixel size (0.18 µm/pixel). For each cell, the number of contained granules was counted and normalized to cell area. The analysis pipeline was implemented in Python using cellpose, scikit-image, numpy, pandas and plotting libraries matplotlib, seaborn and microfilm v0.2.1.
-
-### References
-
-10.1038/s41592-020-01018-x Cellpose: a generalist algorithm for cellular segmentation
-
-10.1101/2024.02.10.579780 Cellpose3: one-click image restoration for improved cellular segmentation
-
-10.7717/peerj.453 scikit-image: Image processing in Python.
+Morphometric measurements including area, perimeter, and eccentricity were calculated for both granules and cells using scikit-image v0.24 [@waltScikitimageImageProcessing2014]. All measurements were converted to physical units using the microscope's calibrated pixel size (0.18 µm/pixel). For each cell, the number of contained granules was counted and normalized to cell area. The analysis pipeline was implemented in Python using cellpose, scikit-image, numpy, pandas and plotting libraries matplotlib, seaborn and microfilm v0.2.1.
 
 
 ```{python}

@@ -1,45 +1,16 @@
 # Summary {.unnumbered}
 
-This is a Quarto book.
+This web book documents the computational analyses performed to investigate the role of chloride ions in regulating DDX3X helicase function, with particular focus on its involvement in biomolecular condensation and stress granule formation. DDX3X mutations are associated with neurodevelopmental disorders, making this analysis crucial for understanding disease mechanisms.
 
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
+The analysis pipeline is organized into three main sections:
 
-<!-- 
-```{python}
-from IPython.display import FileLinks
+1. **Image Analysis Pipeline**: A comprehensive Python-based workflow for processing confocal microscopy data. The pipeline includes maximum intensity Z-projection generation, stress granule detection using Difference of Gaussians filtering, and automated cell segmentation using Cellpose v3.1. The complete analysis code is accessible via the "</> code" button in the top right corner of each page.
 
-# put links to the images here
-FileLinks('output/')
+2. **Quantitative Analysis**: Detailed comparisons of stress granule characteristics across experimental groups and treatments, including:
+   - Stress granule area measurements
+   - Granule counts per cell
+   - Distribution of cells with varying numbers of stress granules
 
-FileLinks('/home/jose.pereira/sau/workdir/ddx3x-stress-granules-analyses/figures/')
+3. **Statistical Analysis**: Rigorous statistical evaluation using non-parametric tests (Mann-Whitney U) to assess differences between experimental groups, with comprehensive reporting of effect sizes and significance levels.
 
-
-
-```
-
-```{python}
-from IPython.display import HTML, Image
-from glob import glob
-image_files = sorted(glob("figures/*.png"))
-```
-
-
-```{python}
-# Image(filename=image_files[0])
-```
-
-
-
-```{python}
-from IPython.display import display
-import ipywidgets as widgets
-
-
-def clicked(arg):
-    return Image(filename=image_files[0])
-    # print("button has been clicked!")
-
-button_download = widgets.Button(description = 'Test Button')   
-button_download.on_click(clicked)
-display(button_download)
-`` -->`
+The appendices contain supplementary technical documentation, including validation studies for cell segmentation and stress granule detection methodologies.
