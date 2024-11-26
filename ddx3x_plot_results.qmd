@@ -6,22 +6,22 @@ import seaborn as sns
 import pandas as pd
 ```
 
-```{python}
-if data_is_empty():
-    print("No data found")
-```
 
 ```{python}
 cells_df = pd.read_csv("output/granules_per_cell.csv")
 granules_df = pd.read_csv("output/granule_area.csv")
 ```
 
+## Stress granule area
+
+In this section, we present the results of the statistical analysis of stress granule area.
+
 ```{python}
 #|fig-cap: "Violin plots of stress granule area."
-fig, axs = plt.subplots(1,2, figsize=(4,5), sharey=True,  constrained_layout=True)
+fig, axs = plt.subplots(1,3, figsize=(4,5), sharey=True,  constrained_layout=True)
 axs[0].set_title('DDX3X WT')
 axs[1].set_title('DDX3X R326H')
-# xlabels = ['CT', 'ARS', 'GLU-20min', 'GLU-40min']
+axs[2].set_title('DDX3X L556S')
 xlabels = ['CT', 'ARS', 'GLU-40min']
 sns.violinplot(data=granules_df[granules_df.group == 'WT'], 
                x='treatment', y='area', 
@@ -41,6 +41,15 @@ sns.violinplot(data=granules_df[granules_df.group == 'R326H'],
                color='cyan',
                density_norm='width',
                linewidth=1)
+sns.violinplot(data=granules_df[granules_df.group == 'L556S'], 
+               x='treatment', y='area', 
+               fill=False, 
+               inner='box', 
+               ax=axs[2], 
+               order=xlabels, 
+               color='grey',
+               density_norm='width',
+               linewidth=1)
 for ax in axs:
     ax.set_xlabel('')
     ax.set_ylabel('Area')
@@ -52,11 +61,65 @@ plt.savefig("plots/stress_granules_area.png")
 plt.savefig("plots/stress_granules_area.svg")
 ```
 
+## Stress granule count per cell
+
+In this section, we present the results of the statistical analysis of stress granule count per cell.
+
 ```{python}
-#|fig-cap: "Violin plots of stress granule count per cell excluding cells with zero stress granules."
-fig, axs = plt.subplots(1,2, figsize=(4,5), sharey=True,  constrained_layout=True)
+#|fig-cap: "Violin plots of stress granule count per cell."
+fig, axs = plt.subplots(1,3, figsize=(4,5), sharey=True,  constrained_layout=True)
 axs[0].set_title('DDX3X WT')
 axs[1].set_title('DDX3X R326H')
+axs[2].set_title('DDX3X L556S')
+xlabels = ['CT', 'ARS', 'GLU-40min']
+sns.violinplot(data=cells_df[cells_df.group == 'WT'], 
+               x='treatment', y='granule_count', 
+               fill=False, 
+               inner='box', 
+               ax=axs[0], 
+               order=xlabels, 
+               color='k', 
+               density_norm='width',
+               linewidth=1)
+sns.violinplot(data=cells_df[cells_df.group == 'R326H'], 
+               x='treatment', y='granule_count', 
+               fill=False,
+               inner='box', 
+               ax=axs[1], 
+               order=xlabels, 
+               color='cyan',
+               density_norm='width',
+               linewidth=1)
+sns.violinplot(data=cells_df[cells_df.group == 'L556S'], 
+               x='treatment', y='granule_count', 
+               fill=False, 
+               inner='box', 
+               ax=axs[2], 
+               order=xlabels, 
+               color='grey',
+               density_norm='width',
+               linewidth=1)
+for ax in axs:
+    ax.set_xlabel('')
+    ax.set_ylabel('Granules')
+    ax.set_yticks(range(0,15))
+    ax.set_ylim(0,15)
+    ax.set_xticklabels(xlabels, rotation=90)
+    ax.grid(axis='y', linewidth=.2)
+plt.savefig("plots/stress_granules_per_cell.png")
+plt.savefig("plots/stress_granules_per_cell.svg")
+```
+
+## Stress granule count per cell excluding cells without stress granules
+
+In this section, we present the results of the statistical analysis of stress granule count per cell excluding cells with zero stress granules.
+
+```{python}
+#|fig-cap: "Violin plots of stress granule count per cell excluding cells with zero stress granules."
+fig, axs = plt.subplots(1,3, figsize=(4,5), sharey=True,  constrained_layout=True)
+axs[0].set_title('DDX3X WT')
+axs[1].set_title('DDX3X R326H')
+axs[2].set_title('DDX3X L556S')
 xlabels = ['CT', 'ARS', 'GLU-40min']
 sns.violinplot(data=cells_df[(cells_df.group == 'WT')&(cells_df.granule_count > 0)], 
                x='treatment', y='granule_count', 
@@ -76,6 +139,15 @@ sns.violinplot(data=cells_df[(cells_df.group == 'R326H')&(cells_df.granule_count
                color='cyan',
                density_norm='width',
                linewidth=1)
+sns.violinplot(data=cells_df[(cells_df.group == 'L556S')&(cells_df.granule_count > 0)], 
+               x='treatment', y='granule_count', 
+               fill=False, 
+               inner='box', 
+               ax=axs[2], 
+               order=xlabels, 
+               color='grey',
+               density_norm='width',
+               linewidth=1)
 for ax in axs:
     ax.set_xlabel('')
     ax.set_ylabel('Granules')
@@ -86,41 +158,9 @@ for ax in axs:
 plt.savefig("plots/stress_granules_per_cell_wout_zeros.png")
 plt.savefig("plots/stress_granules_per_cell_wout_zeros.svg")
 ```
+## Distribution of granule counts
 
-```{python}
-#|fig-cap: "Violin plots of stress granule count per cell."
-fig, axs = plt.subplots(1,2, figsize=(4,5), sharey=True,  constrained_layout=True)
-axs[0].set_title('DDX3X WT')
-axs[1].set_title('DDX3X R326H')
-xlabels = ['CT', 'ARS', 'GLU-40min']
-sns.violinplot(data=cells_df[cells_df.group == 'WT'], 
-               x='treatment', y='granule_count', 
-               fill=False, 
-               inner='box', 
-               ax=axs[0], 
-               order=xlabels, 
-               color='k', 
-               density_norm='width',
-               linewidth=1)
-sns.violinplot(data=cells_df[cells_df.group == 'R326H'], 
-               x='treatment', y='granule_count', 
-               fill=False, 
-               inner='box', 
-               ax=axs[1], 
-               order=xlabels, 
-               color='cyan',
-               density_norm='width',
-               linewidth=1)
-for ax in axs:
-    ax.set_xlabel('')
-    ax.set_ylabel('Granules')
-    ax.set_yticks(range(0,15))
-    ax.set_ylim(0,15)
-    ax.set_xticklabels(xlabels, rotation=90)
-    ax.grid(axis='y', linewidth=.2)
-plt.savefig("plots/stress_granules_per_cell.png")
-plt.savefig("plots/stress_granules_per_cell.svg")
-```
+In this section, we present the distribution of granules per cell.
 
 ```{python}
 # Create categories for different granule counts
@@ -148,7 +188,15 @@ category_percentages = category_percentages.div(category_percentages.sum(axis=1)
 # Create stacked bar plotplt.grid(axis='y', linewidth=.2)2, 6))
 category_percentages = category_percentages.sort_values('treatment', key=lambda x: pd.Categorical(x, categories=['CT', 'ARS', 'GLU-20min', 'GLU-40min'], ordered=True)).sort_values('group', ascending=False)
 category_percentages.plot(kind='bar', stacked=True)
-
+sns.violinplot(data=granules_df[granules_df.group == 'R326H'], 
+               x='treatment', y='area', 
+               fill=False, 
+               inner='box', 
+               ax=axs[1], 
+               order=xlabels, 
+               color='cyan',
+               density_norm='width',
+               linewidth=1)
 # plt.xticks(rotation=45, ha='right')
 plt.ylabel('Cells (%)')
 # plt.xlabel('Group')

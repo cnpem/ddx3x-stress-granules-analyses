@@ -4,11 +4,9 @@ project:
 
 book:
   title: "ddx3x-stress-granules-analyses"
-  author:
-    - name: José Geraldo de Carvalho Pereira
-      affiliation: LNBio/CNPEM
-    - name: João Victor da Silva Guerra
-      affiliation: LNBio/CNPEM
+  # author:
+  #   - name: José Geraldo de Carvalho Pereira
+  #     affiliation: LNBio/CNPEM
   date: 11/19/2024
   date-format: iso
   sidebar:
@@ -17,7 +15,7 @@ book:
     style: "docked"
   chapters:
     - index.qmd
-    - ddx3x_
+    - ddx3x_image_processing.qmd
     - ddx3x_plot_results.qmd
     - ddx3x_stat_analysis.qmd
     - references.qmd
@@ -29,6 +27,7 @@ book:
 execute:
   warning: false
   echo: false
+  freeze: auto
 
 bibliography: references.bib
 
@@ -39,5 +38,3 @@ format:
     code-fold: true
     code-tools: true
     warning: false
-  pdf:
-    documentclass: scrreprt

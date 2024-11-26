@@ -2,10 +2,14 @@
 data/
 figures/
 plots/
+*-bck/
 
 .quarto/
 _site/
 _book/
+_freeze/
+
+tmp.py
 
 
 

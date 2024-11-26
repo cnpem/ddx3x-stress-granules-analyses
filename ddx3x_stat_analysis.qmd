@@ -7,6 +7,7 @@ import pandas as pd
 import pingouin as pg
 import matplotlib.pyplot as plt
 import seaborn as sns
+from IPython.display import display, HTML
 ```
 
 ```{python}
@@ -20,11 +21,11 @@ granules_df["group_treatment"] = granules_df.apply(lambda x: f'{x.group}_{x.trea
 ```
 
 ```{python}
-cells_df.group_treatment.unique()
-```
-
-```{python}
-g = ['WT_CT', 'WT_ARS', 'WT_GLU-20min', 'WT_GLU-40min', 'R326H_CT', 'R326H_ARS', 'R326H_GLU-20min', 'R326H_GLU-40min']
+# create a list of group-treatment combinations
+g = [
+    'WT_CT', 'WT_ARS', 'WT_GLU-40min', 
+    'R326H_CT', 'R326H_ARS', 'R326H_GLU-40min',
+    'L556S_CT', 'L556S_ARS', 'L556S_GLU-40min']
 ```
 
 ```{python}
@@ -58,20 +59,41 @@ for i in range(len(g)):
 df_sg_count_tests = pd.DataFrame(mw_count_tests)
 df_sg_count_wout_zeros_tests = pd.DataFrame(mw_count_wout_zeros_tests)
 df_area_tests = pd.DataFrame(mw_area_tests)
-# .pivot(index="a", columns="b", values="pval")
-# df_tmp = df_tmp[g].sort_values(by=g)
 ```
+
+```{python}
+def flag_sig(pval):
+    if pval < 0.001:
+        return "***"
+    elif pval < 0.01:
+        return "**"
+    elif pval < 0.05:
+        return "*"
+    else:
+        return ""
+```
+
+```{python}
+# add significance flag to all dataframes
+df_sg_count_tests["sig"] = df_sg_count_tests["pval"].apply(flag_sig)
+df_sg_count_wout_zeros_tests["sig"] = df_sg_count_wout_zeros_tests["pval"].apply(flag_sig)
+df_area_tests["sig"] = df_area_tests["pval"].apply(flag_sig)
+```
+
+## Stress granule area
+
+In this section we report the results of the Mann-Whitney U test for stress granule area.
 
 ```{python}
 #|fig-cap: "Heatmap of Mann-Whitney U test results for stress granule area"
 #|fig-align: "center"
 #|fig-title: "Mann-Whitney U test results for stress granule area."
-fig, axs = plt.subplots(1,2, figsize=(8,3), sharey=True)
+fig, axs = plt.subplots(1,2, figsize=(10,4), sharey=True)
 # fig, axs = plt.subplots(1,2, figsize=(16,6))
 df_tmp1 = df_area_tests.pivot(index="a", columns="b", values="pval")[g].sort_values(by=g)
-sns.heatmap(df_tmp1, ax=axs[0], square=True, annot=True, fmt='.3f', vmax=0.1, annot_kws={"size": 5})
+sns.heatmap(df_tmp1, ax=axs[0], square=True, annot=True, fmt='.3f', vmax=0.1, annot_kws={"size": 6})
 df_tmp2 = df_area_tests.pivot(index="a", columns="b", values="effsize")[g].sort_values(by=g)
-sns.heatmap(df_tmp2, ax=axs[1], square=True, annot=True, fmt='.3f', cmap="coolwarm", center=0, annot_kws={"size": 5})
+sns.heatmap(df_tmp2, ax=axs[1], square=True, annot=True, fmt='.3f', cmap="coolwarm", center=0, annot_kws={"size": 6})
 axs[0].set_title("Mann-Whitney U test (p-value)")
 axs[1].set_title("Hedges' g effect size")
 axs[0].set_ylabel("Group")
@@ -82,27 +104,73 @@ fig.suptitle("Area", fontsize=20)
 fig.savefig("plots/mw_area.png")
 ```
 
+The table below shows the results of the Mann-Whitney U test for stress granule area.
+
 ```{python}
-fig, axs = plt.subplots(1,2, figsize=(16,6))
+display(HTML(df_area_tests.to_html()))
+```
+
+## Stress granule count
+
+In this section we report the results of the Mann-Whitney U test for stress granule count.
+
+```{python}
+fig, axs = plt.subplots(1,2, figsize=(10,4), sharey=True)
 df_tmp1 = df_sg_count_tests.pivot(index="a", columns="b", values="pval")[g].sort_values(by=g)
-sns.heatmap(df_tmp1, ax=axs[0], square=True, annot=True, fmt='.3f', vmax=0.1)
+sns.heatmap(df_tmp1, ax=axs[0], square=True, annot=True, fmt='.3f', vmax=0.1, annot_kws={"size": 6})
 df_tmp2 = df_sg_count_tests.pivot(index="a", columns="b", values="effsize")[g].sort_values(by=g)
-sns.heatmap(df_tmp2, ax=axs[1], square=True, annot=True, fmt='.3f', cmap="coolwarm", center=0)
+sns.heatmap(df_tmp2, ax=axs[1], square=True, annot=True, fmt='.3f', cmap="coolwarm", center=0, annot_kws={"size": 6})
 axs[0].set_title("Mann-Whitney U test (p-value)")
 axs[1].set_title("Hedges' g effect size")
+axs[0].set_ylabel("Group")
+axs[1].set_ylabel("Group")
+axs[0].set_xlabel("Group")
+axs[1].set_xlabel("Group")
 fig.suptitle("Count per cell", fontsize=20)
 fig.savefig("plots/mw_count.png")
 ```
 
+The table below shows the results of the Mann-Whitney U test for stress granule count.
+
 ```{python}
-fig, axs = plt.subplots(1,2, figsize=(16,6))
+display(HTML(df_sg_count_tests.to_html()))
+```
+
+## Stress granule count excluding cells without stress granules
+
+In this section we report the results of the Mann-Whitney U test for stress granule count excluding cells with 0 stress granules.
+
+```{python}
+fig, axs = plt.subplots(1,2, figsize=(10,4), sharey=True)
 df_tmp1 = df_sg_count_wout_zeros_tests.pivot(index="a", columns="b", values="pval")[g].sort_values(by=g)
-sns.heatmap(df_tmp1, ax=axs[0], square=True, annot=True, fmt='.3f', vmax=0.1)
+sns.heatmap(df_tmp1, ax=axs[0], square=True, annot=True, fmt='.3f', vmax=0.1, annot_kws={"size": 6})
 df_tmp2 = df_sg_count_wout_zeros_tests.pivot(index="a", columns="b", values="effsize")[g].sort_values(by=g)
-sns.heatmap(df_tmp2, ax=axs[1], square=True, annot=True, fmt='.3f', cmap="coolwarm", center=0)
+sns.heatmap(df_tmp2, ax=axs[1], square=True, annot=True, fmt='.3f', cmap="coolwarm", center=0, annot_kws={"size": 6})
 axs[0].set_title("Mann-Whitney U test (p-value)")
 axs[1].set_title("Hedges' g effect size")
+axs[0].set_ylabel("Group")
+axs[1].set_ylabel("Group")
+axs[0].set_xlabel("Group")
+axs[1].set_xlabel("Group")
 fig.suptitle("Count per cell (without zeros)", fontsize=20)
 fig.savefig("plots/mw_count_wout_zeros.png")
 ```
 
+The table below shows the results of the Mann-Whitney U test for stress granule count excluding cells with 0 stress granules.
+
+```{python}
+display(HTML(df_sg_count_wout_zeros_tests.to_html()))
+```
+
+
+## Number of stress granules per group-treatment
+
+The table below shows the number of stress granules per group-treatment and some descritive statistics.
+
+```{python}
+granules_df.groupby(["group", "treatment"])[['area', 'perimeter', 'eccentricity']].describe()
+```
+
+```{python}
+# granules_df.groupby(["group", "treatment", "image_number"]).count()
+```

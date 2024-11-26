@@ -3,3 +3,43 @@
 This is a Quarto book.
 
 To learn more about Quarto books visit <https://quarto.org/docs/books>.
+
+<!-- 
+```{python}
+from IPython.display import FileLinks
+
+# put links to the images here
+FileLinks('output/')
+
+FileLinks('/home/jose.pereira/sau/workdir/ddx3x-stress-granules-analyses/figures/')
+
+
+
+```
+
+```{python}
+from IPython.display import HTML, Image
+from glob import glob
+image_files = sorted(glob("figures/*.png"))
+```
+
+
+```{python}
+# Image(filename=image_files[0])
+```
+
+
+
+```{python}
+from IPython.display import display
+import ipywidgets as widgets
+
+
+def clicked(arg):
+    return Image(filename=image_files[0])
+    # print("button has been clicked!")
+
+button_download = widgets.Button(description = 'Test Button')   
+button_download.on_click(clicked)
+display(button_download)
+`` -->`

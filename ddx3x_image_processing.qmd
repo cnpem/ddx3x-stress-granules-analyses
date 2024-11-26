@@ -46,7 +46,8 @@ from microfilm import microplot
 PIXEL_SIZE = 0.18
 IMAGES_PATH = [
     "data/ome-tiff/ddx3x_R326H/*.ome.tif", 
-    "data/ome-tiff/ddx3x_wt/*.ome.tif"]
+    "data/ome-tiff/ddx3x_wt/*.ome.tif", 
+    "data/ome-tiff/ddx3x_L556S/*.ome.tif"]
 ```
 
 ```{python}
@@ -99,10 +100,8 @@ def save_sample_images(fig_title, im_nuclei, im_cytoplasm, im_cytoplasm_filtered
 def get_treatment_from_image_filename(im_fn):
     if "ARS" in im_fn:
         return 'ARS'
-    elif 'GLU_40min' in im_fn:
+    elif 'GLU-40min' in im_fn:
         return 'GLU-40min'
-    elif 'GLU_20min' in im_fn:
-        return 'GLU-20min'
     elif 'CT' in im_fn:
         return 'CT'
     else:
@@ -111,7 +110,7 @@ def get_treatment_from_image_filename(im_fn):
 
 ```{python}
 def get_image_number_from_image_filename(im_fn):
-    match = re.search(r'imagem(\d+)', im_fn)
+    match = re.search(r'img(\d+)', im_fn)
     image_number = match.group(1) if match else 'unknown'
     return int(image_number)
 ```
@@ -122,6 +121,8 @@ def get_group_from_path(im_path):
         return 'WT'
     elif 'ddx3x_R326H' in im_path:
         return 'R326H'
+    elif 'ddx3x_L556S' in im_path:
+        return 'L556S'
 ```
 
 ```{python}
@@ -132,17 +133,20 @@ granule_data = []
 cell_data = []
 
 # plot
-fig_example, axs = plt.subplots(8,3, figsize=(9,25))
+fig_example, axs = plt.subplots(9,3, figsize=(9,28))
 example_number = 3
 
 idx = 0
 for im_path in IMAGES_PATH:
     for im_fn in glob(im_path):
+        if get_treatment_from_image_filename(im_fn) == 'GLU-20min':
+            # skip 20min GLU
+            continue
         #read image
         im = iio.imread(im_fn)
         # maximum intensity projection
-        im_nuclei = im[0].max(axis=0)
-        im_cytoplasm = im[1].max(axis=0)
+        im_nuclei = im[0].max(axis=0) # nuclei is the first channel
+        im_cytoplasm = im[1].max(axis=0) # cytoplasm is the second channel
         
         # Process cytoplasm and find granules
         im_cytoplasm_filtered = difference_of_gaussians(im_cytoplasm, 3)
@@ -216,7 +220,7 @@ for im_path in IMAGES_PATH:
                 scalebar_unit_per_pix=0.18, scalebar_size_in_units=5,
                 scalebar_font_size=10, scalebar_thickness=0.01,
                 rescale_type='limits',
-                limits=[[min_nuclei, max_nuclei], [min_cyto, max_cyto]])           # fig_basename = re.search(r'\[(.*?)\.lif\]', im_fn).group(1)
+                limits=[[min_nuclei, max_nuclei], [min_cyto, max_cyto]])           
 
             microplot.microshow(
                 images=[im_cytoplasm_filtered], 

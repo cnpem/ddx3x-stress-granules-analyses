@@ -1,6 +1,6 @@
-# Test granules segmentation
+# Testing stress granules segmentation
 
-This notebook tests the granules segmentation algorithm using difference of gaussians (DoG) implemented in scikit-image filters.
+This notebook tests the stress granules segmentation algorithm that uses difference of gaussians (DoG) implemented in scikit-image filters.
 
 ```{python}
 
@@ -12,6 +12,7 @@ import matplotlib.pyplot as plt
 import re
 from os.path import basename
 import pandas as pd
+from IPython.display import display, HTML, Markdown
 ```
 
 ```{python}
@@ -55,9 +56,13 @@ for im_fn in glob('data/ome-tiff/*/*tif')[30:40]:
 granules_df = pd.concat(granule_data, ignore_index=True)
 ```
 
+## Granule properties
+
 ```{python}
-granules_df['area'].describe()
+Markdown(granules_df['area'].describe().to_markdown())
 ```
+
+## Granule images
 
 ```{python}
 #|fig-cap: "Images of the cytoplasm, filtered cytoplasm and granules identified by DoG."
