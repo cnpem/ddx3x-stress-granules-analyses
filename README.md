@@ -2,8 +2,6 @@
 
 This repository contains the analysis pipeline for investigating stress granules in DDX3X variants using microscopy data. The analysis includes cell segmentation, stress granule detection, and statistical analysis of granule properties.
 
-Data available at [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14224482.svg)](https://doi.org/10.5281/zenodo.14224482).
-
 ## Prerequisites
 
 1. Install [uv](https://github.com/astral-sh/uv) for Python package management
